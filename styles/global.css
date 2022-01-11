@@ -70,14 +70,10 @@ html {
     box-sizing: border-box;
 }
 
-[data-theme="light"] *::selection {
+ *::selection {
+    padding: 0;
     color: var(--white);
     background-color: var(--limeGreen);
-}
-
-[data-theme="dark"] *::selection {
-    color: var(--darkBlue);
-    background-color: var(--white);
 }
 
 body {
