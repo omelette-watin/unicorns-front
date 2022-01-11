@@ -1,0 +1,52 @@
+.error_wrapper {
+    background-color: var(--bgVeryLightGray);
+    min-height: calc(100vh - 18rem);
+}
+
+.error {
+    text-align: center;
+}
+
+.error h1 {
+    margin-bottom: 2rem;
+}
+
+.error p {
+    font-size: 1.5rem;
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+.links p {
+    font-size: 1.2rem;
+}
+
+.links .back {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: var(--colorDarkBlue);
+    text-decoration: underline;
+}
+
+.links .back:hover {
+    color: var(--colorLimeGreen);
+}
+
+.links .back p {
+    margin: 0 0 0 0.7rem;
+}
+
+@media screen and (max-width: 550px) {
+    .links {
+        flex-direction: column;
+        gap: 0;
+    }
+}
