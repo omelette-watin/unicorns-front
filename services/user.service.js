@@ -1,8 +1,8 @@
 import api from "./api.service"
 
 export const countAllUser = async () => {
-  const { data } = await api.get("/users/count")
-  return data
+  const { data: count } = await api.get("/users/count")
+  return count
 }
 
 export const countAuthors = async () => {
