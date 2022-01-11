@@ -1,0 +1,159 @@
+.footer {
+    background-color: var(--bgDarkBlue);
+    color: var(--colorWhite);
+    padding-top: 2.5rem;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+
+.footer a {
+    color: var(--colorWhite);
+}
+
+.logo {
+    display: inline-block;
+}
+
+.logo img{
+    width: 139px;
+}
+
+.social a {
+    display: inline-block;
+    height: 1.25rem;
+}
+
+.social a:not(:last-child) {
+    margin-right: 1rem;
+}
+
+.social a svg path {
+    transition: fill 150ms ease-in-out;
+}
+
+.social a:hover svg path {
+    fill: var(--colorLimeGreen);
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.9375rem;
+}
+
+.links a {
+    line-height: 2.25;
+    transition: color 200ms ease-in-out;
+}
+
+.links a:hover {
+    color: var(--colorLimeGreen);
+}
+
+.cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cta .theme {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0 1rem;
+    padding: 0.5rem;
+    width: fit-content;
+    color: var(--colorWhite);
+    border: 2px solid var(--colorWhite);
+    box-shadow: 1px 2px 3px var(--shadow);
+    border-radius: 50%;
+    transition: all 200ms ease-in-out;
+}
+
+.cta .theme:hover {
+    color: var(--colorLimeGreen);
+    border-color: var(--colorLimeGreen);
+}
+
+.copyright {
+    font-size: 0.8125rem;
+    color: var(--colorGrayishBlue);
+}
+
+.signature {
+    margin-top: 3rem;
+    font-size: 0.875rem;
+}
+
+.signature strong {
+    color: red;
+}
+
+.signature a {
+    color: var(--colorBrightCyan);
+}
+
+@media screen and (min-width: 64em) {
+    .container {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 3fr;
+        grid-template-rows: 1fr auto;
+        grid-template-areas:
+        'logo links1 links2 cta'
+        'social links1 links2 copyright';
+        gap: 1rem;
+        justify-items: start;
+    }
+
+    .logo {
+        grid-area: logo;
+    }
+
+    .social {
+        grid-area: social;
+        align-self: end;
+    }
+
+    .links {
+        justify-content: space-between;
+        align-items: start;
+    }
+
+    .links.col1 {
+        grid-area: links1;
+    }
+
+    .links.col2 {
+        grid-area: links2;
+    }
+
+    .cta {
+        grid-area: cta;
+        text-align: right;
+        justify-self: end;
+    }
+
+    .copyright {
+        grid-area: copyright;
+        align-self: end;
+        justify-self: end;
+    }
+
+}
+
+@media screen and (max-width: 63.9375em) {
+    .logo,
+    .social,
+    .links.col2,
+    .cta {
+        margin-bottom: 1.875rem;
+    }
+
+    .cta {
+        width: fit-content;
+        margin-right: auto;
+        margin-left: auto;
+
+    }
+}

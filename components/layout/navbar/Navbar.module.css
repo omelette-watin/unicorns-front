@@ -1,0 +1,223 @@
+.header {
+    background-color: var(--bgWhite);
+    box-shadow: 1px 2px 3px var(--shadow);
+    z-index: 34;
+    transition: transform 200ms ease-in-out;
+}
+
+.navbar {
+    padding-top: 1.0625rem;
+    padding-bottom: 0.85rem;
+    background-color: var(--bgWhite);
+}
+
+.logo img {
+    width: 8.8125rem;
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+}
+
+.links li:not(:last-child) {
+    margin-right: 2rem;
+}
+
+.links a {
+    position: relative;
+    font-size: 1rem;
+    color: var(--colorGrayishBlue);
+    transition: color 200ms ease-in-out;
+}
+
+.links a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -30px;
+    display: block;
+    height: 5px;
+    background: var(--gradientRight);
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+}
+
+.links a:hover {
+    color: var(--colorDarkBlue);
+}
+
+.links a.active {
+    color: var(--colorDarkBlue);
+}
+
+.links a.active:before {
+    opacity: 1;
+}
+
+.links a:hover:before {
+    opacity: 1;
+}
+
+.sign {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign a {
+    font-size: 1rem;
+    transition: color 200ms ease-in-out;
+}
+
+.sign a:not(:last-child) {
+    margin-right: 1.5rem;
+}
+
+.sign a.little:hover {
+    color: var(--colorDarkBlue);
+}
+
+.mobile_menu {
+    display: none;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.mobile_menu_close {
+    padding: 0.2rem;
+    background-color: var(--bgWhite);
+    border: 1px solid var(--colorDarkBlue);
+    border-radius: 50%;
+    z-index: 102;
+}
+
+.mobile_menu_container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    padding-top: 18vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    backdrop-filter: blur(0.2rem);
+    z-index: 99;
+}
+
+@supports not (backdrop-filter: blur(0.2rem)) {
+    .mobile_menu_container {
+        background-color: rgba(93, 107, 93, 0.42);
+    }
+}
+
+.mobile_menu_content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 1rem;
+    min-width: 240px;
+    padding: 2rem 1rem 1.5rem;
+    background: var(--bgWhite);
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.mobile_menu_container a {
+    font-size: var(--font-med);
+}
+
+.mobile_menu_container ul a:hover {
+    color: var(--colorDarkBlue);
+}
+
+.mobile_links {
+    width: 100%;
+    padding: 0.5rem;
+}
+
+.mobile_links li {
+    margin-bottom: 1rem;
+}
+
+.mobile_links li a.active {
+    color: var(--colorDarkBlue);
+}
+
+.mobile_sign {
+    display: none;
+    width: 100%;
+    text-align: center;
+}
+
+.mobile_sign a {
+    display: block;
+}
+
+.mobile_sign .little {
+    margin-bottom: 1rem;
+}
+
+.mobile_sign .dc {
+    display: flex;
+    align-items: center;
+}
+
+.mobile_sign .dc p {
+    margin-left: 1rem;
+}
+
+.mobile_sign .little:hover {
+    color: var(--colorDarkBlue);
+}
+
+
+.pad_sign {
+    display: flex;
+    align-items: center;
+    margin-right: 1.5rem;
+}
+
+.pad_sign a {
+    font-size: 0.8rem;
+}
+
+.pad_sign a.little {
+    margin-right: 1rem;
+}
+
+@media screen and (max-width: 1050px) {
+    .links,
+    .sign {
+        display: none;
+    }
+
+    .mobile_menu {
+        display: flex;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .pad_sign {
+        display: none;
+    }
+
+    .mobile_links {
+        border-bottom: 2px solid var(--colorLightGrayishBlue);
+    }
+
+    .mobile_sign {
+        display: block;
+    }
+}
+
+
+
