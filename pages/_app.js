@@ -5,6 +5,7 @@ import { UserContext } from "../contexts/user.context"
 import { me } from "../services/auth.service";
 
 import Layout from "../components/layout/Layout"
+import AuthorizationError from "../components/errors/authorization/AuthorizationError"
 import "../styles/global.css"
 import "../styles/helpers.css"
 
@@ -37,11 +38,42 @@ const App = ({ Component, pageProps }) => {
     router.events.on("routeChangeStart", userAuth)
   }, [])
 
+  if (pageProps.protected && !user) {
+    return (
+      <ThemeProvider disableTransitionOnChange={true}>
+        <Layout title={"Non autorisé"}>
+          <AuthorizationError/>
+        </Layout>
+      </ThemeProvider>
+    )
+  }
+
+  if (pageProps.protected && user && pageProps.userTypes && pageProps.userTypes.indexOf(user.role) === -1) {
+    return (
+      <UserContext.Provider value={user}>
+        <ThemeProvider disableTransitionOnChange={true}>
+          <Layout title={"Non autorisé"}>
+            <AuthorizationError/>
+          </Layout>
+        </ThemeProvider>
+      </UserContext.Provider>
+    )
+  }
+
+  if (pageProps.layout === false) {
+    return (
+      <UserContext.Provider value={user}>
+        <ThemeProvider disableTransitionOnChange={true}>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </UserContext.Provider>
+    )
+  }
 
   return (
     <UserContext.Provider value={user}>
       <ThemeProvider disableTransitionOnChange={true}>
-        <Layout>
+        <Layout title={pageProps.title}>
           <Component {...pageProps}/>
         </Layout>
       </ThemeProvider>
