@@ -1,40 +1,40 @@
 .layout_wrapper {
-    position: relative;
+  position: relative;
 }
 
 .dev_wrapper {
-    padding: 0.8rem 0.3rem;
-    width: 100vw;
-    max-width:100%;
-    text-align: center;
-    font-size: 1rem;
-    color: var(--white);
-    background-color: var(--bgLimeGreen);
-    background-image: var(--gradientRight);
+  padding: 0.8rem 0.3rem;
+  width: 100vw;
+  max-width: 100%;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--white);
+  background-color: var(--bgLimeGreen);
+  background-image: var(--gradientRight);
 }
 
 .dev_wrapper span {
-    margin: 0 0.4rem;
+  margin: 0 0.4rem;
 }
 
 .dev_wrapper p {
-    margin: 0.2rem;
+  margin: 0.2rem;
 }
 
 .dev_wrapper a {
-    display: block;
-    margin: 0.5rem 0 0;
-    text-decoration: underline;
-    color: var(--colorDarkBlue);
+  display: block;
+  margin: 0.5rem 0 0;
+  text-decoration: underline;
+  color: var(--colorDarkBlue);
 }
 
 .dev_wrapper a:hover {
-    color: var(--darkBlue);
-    text-decoration: underline;
+  color: var(--darkBlue);
+  text-decoration: underline;
 }
 
 @media screen and (max-width: 350px) {
-    .dev_wrapper {
-        font-size: 0.8rem;
-    }
+  .dev_wrapper {
+    font-size: 0.8rem;
+  }
 }

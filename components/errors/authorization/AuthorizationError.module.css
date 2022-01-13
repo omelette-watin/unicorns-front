@@ -1,62 +1,61 @@
 .error_wrapper {
-    background-color: var(--bgVeryLightGray);
-    min-height: calc(100vh - 18rem);
+  background-color: var(--bgVeryLightGray);
+  min-height: calc(100vh - 18rem);
 }
 
 .error {
-    text-align: center;
+  text-align: center;
 }
 
 .error h1 {
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
 .error p {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .links {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 2rem;
-    align-items: center;
-    margin-top: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+  align-items: center;
+  margin-top: 3rem;
 }
 
 .links p {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 .links .back {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    color: var(--colorDarkBlue);
-    text-decoration: underline;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: var(--colorDarkBlue);
+  text-decoration: underline;
 }
 
 .links .back:hover {
-    color: var(--colorLimeGreen);
+  color: var(--colorLimeGreen);
 }
 
-
 .links .back p {
-    margin: 0 0 0 0.7rem;
+  margin: 0 0 0 0.7rem;
 }
 
 .btn {
-    padding: 0.8rem 1.9rem;
-    font-size: 1.2rem;
-    font-weight: 400;
-    border-radius: 50px;
-    overflow: hidden;
-    transition: opacity 200ms ease-in-out;
+  padding: 0.8rem 1.9rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  border-radius: 50px;
+  overflow: hidden;
+  transition: opacity 200ms ease-in-out;
 }
 
 @media screen and (max-width: 550px) {
-    .links {
-        flex-direction: column;
-        gap: 0;
-    }
+  .links {
+    flex-direction: column;
+    gap: 0;
+  }
 }

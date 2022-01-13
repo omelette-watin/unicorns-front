@@ -1,8 +1,8 @@
 import api from "./api.service"
 
 export const countAllUser = async () => {
-  const { data: count } = await api.get("/users/count")
-  return count
+  const { data } = await api.get("/users/count")
+  return data.count
 }
 
 export const countAuthors = async () => {
@@ -46,31 +46,51 @@ export const getUserById = async (id) => {
 }
 
 export const updateUser = async (token, id, body) => {
-  const { data } = await api.put(`/users/${id}`, body, { headers: { "x-access-token": token } })
+  const { data } = await api.put(`/users/${id}`, body, {
+    headers: { "x-access-token": token },
+  })
   return data
 }
 
 export const promoteUserToAuthor = async (token, id) => {
-  const { data } = await api.put(`/users/author/${id}`, {} , { headers: { "x-access-token": token } })
+  const { data } = await api.put(
+    `/users/author/${id}`,
+    {},
+    { headers: { "x-access-token": token } }
+  )
   return data
 }
 
 export const promoteUserToAdmin = async (token, id) => {
-  const { data } = await api.put(`/users/admin/${id}`, {} , { headers: { "x-access-token": token } })
+  const { data } = await api.put(
+    `/users/admin/${id}`,
+    {},
+    { headers: { "x-access-token": token } }
+  )
   return data
 }
 
 export const deactivateUser = async (token, id) => {
-  const { data } = await api.put(`/users/deactivate/${id}`, {} , { headers: { "x-access-token": token } })
+  const { data } = await api.put(
+    `/users/deactivate/${id}`,
+    {},
+    { headers: { "x-access-token": token } }
+  )
   return data
 }
 
 export const activateUser = async (token, id) => {
-  const { data } = await api.put(`/users/activate/${id}`, {} , { headers: { "x-access-token": token } })
+  const { data } = await api.put(
+    `/users/activate/${id}`,
+    {},
+    { headers: { "x-access-token": token } }
+  )
   return data
 }
 
 export const deleteUser = async (token, id) => {
-  const { data } = await api.delete(`/users/${id}`, { headers: { "x-access-token": token } })
+  const { data } = await api.delete(`/users/${id}`, {
+    headers: { "x-access-token": token },
+  })
   return data
 }

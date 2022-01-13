@@ -1,13 +1,13 @@
 import api from "./api.service"
 
 export const countAllComments = async () => {
-  const { data: count } = await api.get("/comments/count")
-  return count
+  const { data } = await api.get("/comments/count")
+  return data.count
 }
 
 export const getAllCommentsIds = async () => {
-  const { data: ids } = await api.get("/comments/ids")
-  return ids
+  const { data } = await api.get("/comments/ids")
+  return data.ids
 }
 
 export const getAllComments = async (page = 1, limit = 10) => {
@@ -21,20 +21,24 @@ export const getCommentById = async (id) => {
 }
 
 export const getCommentsByUserId = async (id, page = 1, limit = 10) => {
-  const { data } = await api.get(`/comments/user/${id}?page=${page}&limit=${limit}`)
+  const { data } = await api.get(
+    `/comments/user/${id}?page=${page}&limit=${limit}`
+  )
   return data
 }
 
 export const getCommentsByPostId = async (id, page = 1, limit = 10) => {
-  const { data } = await api.get(`/comments/post/${id}?page=${page}&limit=${limit}`)
+  const { data } = await api.get(
+    `/comments/post/${id}?page=${page}&limit=${limit}`
+  )
   return data
 }
 
 export const createComment = async (token, body) => {
   const { data } = await api.post(`/comments/`, body, {
     headers: {
-      "x-access-token": token
-    }
+      "x-access-token": token,
+    },
   })
   return data
 }
@@ -42,8 +46,8 @@ export const createComment = async (token, body) => {
 export const updateComment = async (token, id, body) => {
   const { data } = await api.put(`/comments/${id}`, body, {
     headers: {
-      "x-access-token": token
-    }
+      "x-access-token": token,
+    },
   })
   return data
 }
@@ -51,8 +55,8 @@ export const updateComment = async (token, id, body) => {
 export const deleteComment = async (token, id) => {
   const { data } = await api.delete(`/comments/${id}`, {
     headers: {
-      "x-access-token": token
-    }
+      "x-access-token": token,
+    },
   })
   return data
 }

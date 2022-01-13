@@ -1,0 +1,90 @@
+.last_posts {
+  background-color: var(--bgWhite);
+}
+
+.headings h1 {
+  font-weight: 800;
+}
+
+.headings strong {
+  color: var(--colorBrightCyan);
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 3.5rem;
+}
+
+.post {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 2rem;
+  max-width: 80vw;
+  margin: auto;
+  background-color: var(--bgVeryLightGray);
+  border-radius: 0.5rem;
+  border: 1px solid var(--bgVeryLightGray);
+  box-shadow: 1px 2px 3px var(--shadow);
+  transition: all 200ms ease-in-out;
+}
+
+.post:hover {
+  box-shadow: 1px 2px 5px var(--brightCyan);
+  transform: scale(1.01);
+  border: 1px solid var(--colorBrightCyan);
+}
+
+.post a {
+  position: absolute;
+  inset: 0;
+}
+
+.title {
+
+}
+
+.date {
+  font-size: 0.9rem;
+  color: var(--colorDarkBlue);
+}
+
+.text {
+  text-align: justify;
+}
+
+.author {
+  margin: 2rem 0 0 auto;
+  color: var(--colorDarkBlue);
+  font-style: italic;
+}
+
+.link {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.link a {
+  font-size: 1.25rem;
+}
+
+
+@media screen and (min-width: 40em) {
+  .links {
+    text-align: right;
+    margin-right: 2rem;
+  }
+}
+
+
+@media screen and (min-width: 64em) {
+  .content {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+
+}
