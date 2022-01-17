@@ -4,6 +4,7 @@ import Features from "../components/home/Features"
 import About from "../components/home/About"
 import LastPosts from "../components/home/LastPosts"
 import { useUser } from "../contexts/user.context"
+import { addViewToSite } from "../services/view.controller"
 
 const Home = ({ userCount }) => {
   const { user } = useUser()
@@ -20,6 +21,7 @@ const Home = ({ userCount }) => {
 
 export async function getServerSideProps() {
   const userCount = await countAllUser()
+  await addViewToSite()
   return {
     props: {
       userCount,
