@@ -10,6 +10,7 @@ export const signIn = async (data) => {
 
 export const logout = () => {
   localStorage.removeItem("token")
+  window.location.reload()
 }
 
 export const me = async (token) => {

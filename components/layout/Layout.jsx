@@ -15,7 +15,7 @@ const Layout = ({ children, title }) => {
       <div className={styles.dev_wrapper}>
         👷 <span>Ce site est encore en développement</span> 👷
         <p>
-          <Link href={"/report"}>
+          <Link href={"/dev-report"}>
             <a>Laisser un commentaire</a>
           </Link>
         </p>
@@ -23,8 +23,7 @@ const Layout = ({ children, title }) => {
       <Navbar active={title} />
       <main style={{ minHeight: "60vh" }}>{children}</main>
       <Footer />
-      <script src={"/scripts/header.js"}>
-      </script>
+      <script src={"/scripts/header.js"} />
     </div>
   )
 }

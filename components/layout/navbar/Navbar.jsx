@@ -1,19 +1,13 @@
 import Link from "next/link"
-import { useRouter } from "next/router"
 import { useState } from "react"
 import { RiCloseLine, RiMenuLine, RiLogoutBoxLine } from "react-icons/ri"
 import { useUser } from "../../../contexts/user.context"
 import styles from "./Navbar.module.css"
+import { logout } from "../../../services/auth.service"
 
 const Navbar = ({ active }) => {
   const { user } = useUser()
   const [toggleMenu, setToggleMenu] = useState(false)
-  const router = useRouter()
-
-  const logout = async () => {
-    localStorage.removeItem("token")
-    await router.replace("/login")
-  }
 
   const links = (
     <>
