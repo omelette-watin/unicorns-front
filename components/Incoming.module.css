@@ -1,0 +1,47 @@
+.incoming_wrapper {
+    background-color: var(--bgVeryLightGray);
+    min-height: calc(100vh - 18rem);
+}
+
+.incoming {
+    text-align: center;
+}
+
+.incoming h1 strong {
+    color: var(--colorLimeGreen);
+}
+
+.incoming p {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+.links p {
+    font-size: 1.2rem;
+}
+
+.links .back {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: var(--colorDarkBlue);
+    text-decoration: underline;
+}
+
+.links .back:hover {
+    color: var(--colorLimeGreen);
+}
+
+.links .back p {
+    margin: 0 0 0 0.7rem;
+}
+
