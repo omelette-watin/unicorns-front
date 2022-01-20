@@ -1,0 +1,7 @@
+.blog_wrapper {
+  background-color: var(--bgVeryLightGray);
+}
+
+.blog_container {
+  min-height: calc(100vh);
+}

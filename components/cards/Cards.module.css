@@ -1,0 +1,44 @@
+.card {
+  padding: 2rem 2rem 0.35rem;
+  margin: 2rem auto;
+  background-color: var(--bgWhite);
+  border-radius: 5px;
+  box-shadow: 1px 2px 3px var(--shadow);
+}
+
+.categories span {
+  padding: 0.2rem 0.6rem;
+  margin-right: 0.4rem;
+  background-color: var(--bgLimeGreen);
+  color: var(--white);
+  border-radius: 5px;
+}
+
+.author {
+  color: var(--lightBlue);
+  font-weight: 600;
+}
+
+.readmore {
+  color: var(--colorDarkBlue);
+  font-weight: 500;
+}
+
+.author:hover,
+.readmore:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.15rem;
+}
+
+.general_infos {
+  color: var(--colorBlack);
+}
+
+.stats {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 2rem;
+}
+

@@ -98,7 +98,7 @@
   font-weight: 500;
   line-height: 3rem;
   color: var(--white);
-  background-color: var(--bgLightBlue);
+  background-color: var(--bgBlue);
   border-radius: 0.375rem;
   box-shadow: 0 2px 4px var(--shadow), 0 8px 16px var(--shadow);
   transition: transform 200ms ease-in-out;

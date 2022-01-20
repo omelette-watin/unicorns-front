@@ -95,6 +95,57 @@
     transform: translateY(-100%);
 }
 
+.pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4rem;
+}
+
+.pagination .previous a,
+.pagination .next a {
+    margin: 0 1.5rem;
+}
+
+.pagination a {
+    padding: 0.6rem;
+    font-weight: 600;
+    color: var(--lightBlue);
+    border-radius: 5px;
+    transition: all 200ms ease-in-out;
+}
+
+.pagination a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.15rem;
+}
+
+.pagination .active a {
+    color: var(--colorDarkBlue);
+}
+
+
+@media screen and (max-width: 450px) {
+    .pagination {
+        display: block;
+        margin: auto;
+        width: fit-content;
+    }
+
+    .pagination .previous {
+        margin-bottom: 1rem;
+    }
+
+    .pagination .next {
+        margin-top: 1rem;
+    }
+
+    .pages {
+        display: inline;
+    }
+}
+
 @media screen and (min-width: 64em) {
     .hide_for_desktop {
         display: none;

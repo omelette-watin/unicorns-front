@@ -3,7 +3,8 @@
     --darkGrey: hsl(214, 7%, 19%);
     --lighDarkGrey: hsl(216, 7%, 23%);
     --darkBlue: hsl(233, 24%, 36%);
-    --lightBlue: #1877f2;
+    --blue: #1877f2;
+    --lightBlue: rgb(29, 155, 240);
     --limeGreen: hsl(136, 50%, 56%);
     --brightCyan: hsla(192, 70%, 51%, 0.6);
     --lightBrightCyan: hsl(192, 70%, 51%);
@@ -28,7 +29,7 @@
     --colorLightGrayishBlue: var(--lightGrayishBlue);
 
     --bgLimeGreen: var(--limeGreen);
-    --bgLightBlue: var(--lightBlue);
+    --bgBlue: var(--blue);
 
     /* Font Sizes */
     --font-sm: 0.875rem;
@@ -89,7 +90,6 @@ body {
 /* Text */
 
 a,
-a:hover,
 a:visited {
     text-decoration: none;
     color: unset;
