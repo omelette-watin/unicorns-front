@@ -29,7 +29,19 @@ const AllPosts = (props) => {
   }, [])
 
   const handlePageClick = ({ selected: selectedPage }) => {
-    Router.push(`/blog?page=${selectedPage + 1}`)
+    Router.push(
+      `/blog?page=${selectedPage + 1}${
+        props.currentQuery.search ? `&q=${props.currentQuery.search}` : ""
+      }${
+        props.currentQuery.order === "oldest"
+          ? `&order=${props.currentQuery.order}`
+          : ""
+      }${
+        props.currentQuery.category
+          ? `&category=${props.currentQuery.category}`
+          : ""
+      }`
+    )
   }
 
   let content
@@ -61,14 +73,10 @@ const AllPosts = (props) => {
     <>
       <BlogLayout>
         <div className="container">
-          <h1>
-            Les derniers{" "}
-            <strong style={{ color: "var(--lightBrightCyan)" }}>
-              Articles
-            </strong>
-          </h1>
-          <p>
-            Page {props.currentPage} sur environ {props.totalCount} résultats
+          <p style={{ marginLeft: "1rem" }}>
+            {props.totalCount
+              ? `Page ${props.currentPage} sur environ ${props.totalCount} résultats`
+              : "Aucun résultat pour votre recherche"}
           </p>
           <div className="posts">{content}</div>
 
@@ -94,11 +102,15 @@ const AllPosts = (props) => {
 }
 
 export async function getServerSideProps({ query }) {
+  const search = query.q || ""
+  const category = query.category || ""
+  const order = query.order || "latest"
   const page = parseInt(query.page) || 1
-  const posts = await getAllPublishedPosts(page, 4)
+  const posts = await getAllPublishedPosts(page, search, category, order, 4)
 
   return {
     props: {
+      currentQuery: { search, order, category },
       totalCount: posts.meta.totalCount,
       pageCount: posts.meta.pageCount,
       currentPage: posts.meta.currentPage,

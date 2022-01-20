@@ -10,8 +10,16 @@ export const getAllPublishedPostsIds = async () => {
   return data.ids
 }
 
-export const getAllPublishedPosts = async (page = 1, limit = 10) => {
-  const { data } = await api.get(`/posts/?page=${page}&limit=${limit}`)
+export const getAllPublishedPosts = async (
+  page = 1,
+  search = "",
+  category = "",
+  order = "latest",
+  limit = 10
+) => {
+  const { data } = await api.get(
+    `/posts/?page=${page}&limit=${limit}&q=${search}&order=${order}&category=${category}`
+  )
   return data
 }
 
@@ -30,11 +38,13 @@ export const getPublishedPostsByUserId = async (id, page = 1, limit = 10) => {
 export const getSavedPostsByUserId = async (
   token,
   id,
-  page = 1,
+  page,
+  search = "",
+  order = "latest",
   limit = 10
 ) => {
   const { data } = await api.get(
-    `/posts/user/saved/${id}?page=${page}&limit=${limit}`,
+    `/posts/user/saved/${id}?page=${page}&limit=${limit}&q=${search}&order=${order}`,
     {
       headers: {
         "x-access-token": token,
