@@ -33,7 +33,17 @@ const AllPosts = (props) => {
   }
 
   let content
-  if (isLoading) content = <div>Loading...</div>
+  if (isLoading)
+    content = (
+      <div className={"loading_wrapper"}>
+        <div className="lds-ellipsis">
+          <div />
+          <div />
+          <div />
+          <div />
+        </div>
+      </div>
+    )
   else {
     content = (
       <ul>
@@ -62,19 +72,21 @@ const AllPosts = (props) => {
           </p>
           <div className="posts">{content}</div>
 
-          <ReactPaginate
-            previousLabel={"< Précédent"}
-            nextLabel={"Suivant >"}
-            breakLabel={"..."}
-            breakClassName={"break-me"}
-            activeClassName={"active"}
-            containerClassName={"pagination"}
-            pageClassName={"pages"}
-            pageCount={props.pageCount}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={3}
-            onPageChange={handlePageClick}
-          />
+          {props.totalCount > 5 && (
+            <ReactPaginate
+              previousLabel={"< Précédent"}
+              nextLabel={"Suivant >"}
+              breakLabel={"..."}
+              breakClassName={"break-me"}
+              activeClassName={"active"}
+              containerClassName={"pagination"}
+              pageClassName={"pages"}
+              pageCount={props.pageCount}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={3}
+              onPageChange={handlePageClick}
+            />
+          )}
         </div>
       </BlogLayout>
     </>
