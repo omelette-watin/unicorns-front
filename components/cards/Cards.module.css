@@ -6,6 +6,10 @@
   box-shadow: 1px 2px 3px var(--shadow);
 }
 
+.categories {
+  display: flex;
+}
+
 .categories span {
   padding: 0.3rem 0.7rem;
   margin-right: 0.4rem;
@@ -46,3 +50,13 @@
   margin-right: 1rem;
 }
 
+@media screen and (max-width: 300px ) {
+  .categories {
+    flex-direction: column;
+  }
+
+  .categories span {
+    margin-bottom: 0.5rem;
+    width: fit-content;
+  }
+}

@@ -16,7 +16,7 @@
 }
 
 .categories {
-  padding-left: 0.6rem;
+  display: flex;
   margin-bottom: 1rem;
 }
 
@@ -29,7 +29,6 @@
 }
 
 .general_infos {
-  padding-left: 0.6rem;
   margin-bottom: 2rem;
   color: var(--colorGrayishBlue);
 }
@@ -55,11 +54,11 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 0.4rem;
   margin-top: 2rem;
 }
 
 .stats svg {
+  margin-left: 0.5rem;
   margin-right: 1rem;
 }
 
@@ -67,7 +66,6 @@
   text-align: justify;
   color: var(--colorBlack);
 }
-
 
 .comments form {
   display: flex;
@@ -133,5 +131,16 @@
     font-size: var(--font-sm);
     margin-top: 2rem;
     align-self: flex-end;
+  }
+}
+
+@media screen and (max-width: 300px ) {
+  .categories {
+    flex-direction: column;
+  }
+
+  .categories span {
+    margin-bottom: 0.5rem;
+    width: fit-content;
   }
 }
