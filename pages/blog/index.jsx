@@ -80,7 +80,7 @@ const AllPosts = (props) => {
           </p>
           <div className="posts">{content}</div>
 
-          {props.totalCount > 5 && (
+          {props.totalCount > 4 && (
             <ReactPaginate
               previousLabel={"< Précédent"}
               nextLabel={"Suivant >"}

@@ -27,7 +27,7 @@ const Navbar = ({ active }) => {
       <li>
         <Link href={"/blog"}>
           <a
-            className={active === "Blog" ? styles.active : null}
+            className={active && active.includes("Blog") ? styles.active : null}
             onClick={() => {
               setToggleMenu(false)
               document.querySelector("body").classList.remove("no-scroll")
@@ -40,7 +40,9 @@ const Navbar = ({ active }) => {
       <li>
         <Link href={"/doc"}>
           <a
-            className={active === "Documentation" ? styles.active : null}
+            className={
+              active && active.includes("Documentation") ? styles.active : null
+            }
             onClick={() => {
               setToggleMenu(false)
               document.querySelector("body").classList.remove("no-scroll")
@@ -53,7 +55,9 @@ const Navbar = ({ active }) => {
       <li>
         <Link href={"/doc/api"}>
           <a
-            className={active === "API Reference" ? styles.active : null}
+            className={
+              active && active.includes("API Reference") ? styles.active : null
+            }
             onClick={() => {
               setToggleMenu(false)
               document.querySelector("body").classList.remove("no-scroll")

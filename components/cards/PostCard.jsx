@@ -6,13 +6,17 @@ import Link from "next/link"
 const PostCard = ({ post }) => {
   return (
     <div className={styles.card}>
-      <h3>{post.title}</h3>
+      <Link href={`/blog/${post._id}`}>
+        <a className={styles.readmore}>
+          <h3>{post.title}</h3>
+        </a>
+      </Link>
       {post.category && (
         <p className={styles.categories}>
           {post.category.map((c) => {
             return (
               <span key={c}>
-                <Link href={`/blog/category/${c}`}>
+                <Link href={`/blog?category=${c}`}>
                   <a>{c}</a>
                 </Link>
               </span>
@@ -33,7 +37,7 @@ const PostCard = ({ post }) => {
 
       <p className={styles.content_intro}>
         {post.content.slice(0, 300)} ...{" "}
-        <Link href={`/blog/posts/${post._id}`}>
+        <Link href={`/blog/${post._id}`}>
           <a className={styles.readmore}>Lire la suite</a>
         </Link>
       </p>

@@ -25,7 +25,7 @@ export const getAllPublishedPosts = async (
 
 export const getPublishedPostById = async (id) => {
   const { data } = await api.get(`/posts/${id}`)
-  return data
+  return data.post
 }
 
 export const getPublishedPostsByUserId = async (id, page = 1, limit = 10) => {

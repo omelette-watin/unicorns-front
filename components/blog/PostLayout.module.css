@@ -1,9 +1,23 @@
-.card {
-  padding: 2rem 2rem 0.35rem;
-  margin: 2rem auto;
-  background-color: var(--bgWhite);
-  border-radius: 5px;
-  box-shadow: 1px 2px 3px var(--shadow);
+.blog_wrapper {
+  background-color: var(--bgVeryLightGray);
+  min-height: calc(100vh - 18rem);
+}
+
+.blog_container {
+  min-height: calc(100vh);
+}
+
+.post {
+
+}
+
+.post h2 {
+  margin-bottom: 3rem;
+}
+
+.categories {
+  padding-left: 0.6rem;
+  margin-bottom: 1rem;
 }
 
 .categories span {
@@ -12,6 +26,12 @@
   background-color: var(--bgLimeGreen);
   color: var(--white);
   border-radius: 5px;
+}
+
+.general_infos {
+  padding-left: 0.6rem;
+  margin-bottom: 2rem;
+  color: var(--colorGrayishBlue);
 }
 
 .author {
@@ -31,10 +51,6 @@
   text-underline-offset: 0.15rem;
 }
 
-.general_infos {
-  color: var(--colorBlack);
-}
-
 .stats {
   display: flex;
   justify-content: flex-end;
@@ -43,3 +59,7 @@
   padding: 0.3rem 2rem;
 }
 
+.content {
+  text-align: justify;
+  color: var(--colorBlack);
+}
