@@ -1,9 +1,75 @@
 import styles from "./PostLayout.module.css"
 import Date from "../helpers/Date"
+import Heure from "../helpers/Heure"
 import Link from "next/link"
 import { ImEye } from "react-icons/im"
+import { MdOutlineComment } from "react-icons/md"
+import { useEffect, useState } from "react"
+import {
+  createComment,
+  deleteComment,
+  getCommentById,
+  getCommentsByPostId,
+} from "../../services/comment.service"
+import { useUser } from "../../contexts/user.context"
+import { logout } from "../../services/auth.service"
+import Router from "next/router"
 
 const PostLayout = ({ post }) => {
+  const [comments, setComments] = useState([])
+  const [commentContent, setCommentContent] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
+  const { user } = useUser()
+
+  useEffect(async () => {
+    if (post.comments) {
+      getCommentsByPostId(post._id)
+        .then((res) => {
+          const commentsFetched = res.result
+          setComments(commentsFetched)
+        })
+        .catch((e) => {
+          console.log(e.response.data.message || e.message)
+        })
+    }
+  }, [])
+
+  const handleDelete = (e) => {
+    const commentId = e.target.value
+    const token = localStorage.getItem("token")
+    deleteComment(token, commentId)
+      .then(() => {
+        setComments(comments.filter((comment) => comment._id !== commentId))
+      })
+      .catch((e) => {
+        console.log(e.response.data.message || e.message)
+        logout()
+      })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const token = localStorage.getItem("token")
+
+    setIsLoading(true)
+
+    createComment(token, post._id, { content: commentContent })
+      .then((res) => {
+        setCommentContent("")
+        setIsLoading(false)
+        getCommentById(res.id).then((res) => {
+          console.log(res)
+          const newComments = [res.comment, ...comments]
+          setComments(newComments)
+        })
+      })
+      .catch((e) => {
+        setIsLoading(false)
+        console.log(e.response.data.message || e.message)
+        Router.push("/login")
+      })
+  }
+
   return (
     <div className={styles.blog_wrapper}>
       <div className={`${styles.blog_container} container p-all`}>
@@ -34,8 +100,39 @@ const PostLayout = ({ post }) => {
           </p>
           <p className={styles.content}>{post.content}</p>
           <p className={styles.stats}>
+            {comments.length} <MdOutlineComment />
             {post.views} <ImEye />
           </p>
+        </div>
+        <div className={styles.comments}>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder={"Laisser un commentaire"}
+              value={commentContent}
+              onChange={(e) => setCommentContent(e.target.value)}
+            />
+            <button disabled={isLoading} type="submit" className={`btn`}>
+              {isLoading ? "Envoi ..." : "Envoyer"}
+            </button>
+          </form>
+          {comments.map((comment) => {
+            return (
+              <div key={comment._id} className={styles.comment}>
+                <p className={styles.author}>{comment.authorName}</p>
+                <p>
+                  Posté le <Date dateString={comment.createdAt} /> à{" "}
+                  <Heure dateString={comment.createdAt} />
+                </p>
+                <p>{comment.content}</p>
+                {user && user._id === comment.authorId && (
+                  <button onClick={handleDelete} value={comment._id}>
+                    delete
+                  </button>
+                )}
+              </div>
+            )
+          })}
         </div>
       </div>
     </div>

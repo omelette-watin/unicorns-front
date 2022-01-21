@@ -7,15 +7,11 @@ import PostCard from "../../components/cards/PostCard"
 
 const AllPosts = (props) => {
   const [isLoading, setLoading] = useState(false)
-  const startLoading = (url) => {
-    if (url.includes("blog")) {
-      setLoading(true)
-    }
+  const startLoading = () => {
+    setLoading(true)
   }
-  const stopLoading = (url) => {
-    if (url.includes("blog")) {
-      setLoading(false)
-    }
+  const stopLoading = () => {
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -80,16 +76,18 @@ const AllPosts = (props) => {
           </p>
           <div className="posts">{content}</div>
 
-          {props.totalCount > 4 && (
+          {props.totalCount > 4 && !isLoading && (
             <ReactPaginate
               previousLabel={"< Précédent"}
               nextLabel={"Suivant >"}
               breakLabel={"..."}
               breakClassName={"break-me"}
               activeClassName={"active"}
+              disabledClassName={"disabled"}
               containerClassName={"pagination"}
               pageClassName={"pages"}
               pageCount={props.pageCount}
+              forcePage={props.currentPage - 1}
               marginPagesDisplayed={2}
               pageRangeDisplayed={3}
               onPageChange={handlePageClick}

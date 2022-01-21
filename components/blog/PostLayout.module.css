@@ -12,7 +12,7 @@
 }
 
 .post h2 {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .categories {
@@ -56,10 +56,62 @@
   justify-content: flex-end;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.3rem 2rem;
+  margin-top: 2rem;
+}
+
+.stats svg {
+  margin-right: 1rem;
 }
 
 .content {
   text-align: justify;
   color: var(--colorBlack);
+}
+
+
+.comments form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.comments form input {
+  width: 100%;
+  padding: 1rem 0.5rem;
+  margin-right: 2rem;
+  color: var(--colorGrayishBlue);
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--grayishBlue);
+  outline: none!important;
+}
+
+.comments form button {
+  margin-right: 0.5rem;
+  padding: 0.5rem 1.2rem;
+  font-size: var(--font-med);
+  background-color: var(--bgLimeGreen);
+  color: var(--white);
+  border: none;
+  border-radius: 7px;
+  outline: none!important;
+  transition: all 200ms ease-in-out;
+}
+
+.comments .comment {
+  margin: 1rem 0;
+  border-bottom: 1px solid var(--grayishBlue);
+}
+
+@media screen and (max-width: 690px ) {
+  .comments form {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .comments form button {
+    font-size: var(--font-sm);
+    margin-top: 2rem;
+    align-self: flex-end;
+  }
 }

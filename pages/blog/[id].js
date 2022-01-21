@@ -3,7 +3,6 @@ import PostLayout from "../../components/blog/PostLayout"
 import { addViewToPost } from "../../services/view.controller"
 
 const Post = ({ post }) => {
-  console.log(post)
   return <PostLayout post={post} />
 }
 

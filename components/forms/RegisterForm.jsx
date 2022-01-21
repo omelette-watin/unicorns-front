@@ -56,9 +56,7 @@ const RegisterForm = () => {
         if (res.includes("utilisateur")) {
           setIsLoading(false)
           setErrors({ ...errors, username: res })
-        }
-
-        if (res.includes("mail")) {
+        } else if (res.includes("mail")) {
           setIsLoading(false)
           setErrors({ ...errors, email: res })
         } else {

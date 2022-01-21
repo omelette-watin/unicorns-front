@@ -34,8 +34,8 @@ export const getCommentsByPostId = async (id, page = 1, limit = 10) => {
   return data
 }
 
-export const createComment = async (token, body) => {
-  const { data } = await api.post(`/comments/`, body, {
+export const createComment = async (token, postId, body) => {
+  const { data } = await api.post(`/comments/${postId}`, body, {
     headers: {
       "x-access-token": token,
     },

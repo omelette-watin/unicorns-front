@@ -27,7 +27,7 @@ const LoginForm = () => {
         const token = res.data.token
         localStorage.setItem("token", token)
 
-        router.replace("/dashboard")
+        router.back()
       })
       .catch((e) => {
         setPassword("")
@@ -95,7 +95,7 @@ const LoginForm = () => {
             type="submit"
             className={`${styles.login_btn} btn`}
           >
-            {isLoading ? "Envoi ..." : "Se connecter"}
+            {isLoading ? "Envoi..." : "Se connecter"}
           </button>
           <p>
             Pas encore de compte ?

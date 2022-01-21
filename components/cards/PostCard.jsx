@@ -2,6 +2,7 @@ import styles from "./Cards.module.css"
 import Date from "../helpers/Date"
 import { ImEye } from "react-icons/im"
 import Link from "next/link"
+import { MdOutlineComment } from "react-icons/md"
 
 const PostCard = ({ post }) => {
   return (
@@ -42,6 +43,7 @@ const PostCard = ({ post }) => {
         </Link>
       </p>
       <p className={styles.stats}>
+        {post.comments} <MdOutlineComment />
         {post.views} <ImEye />
       </p>
     </div>

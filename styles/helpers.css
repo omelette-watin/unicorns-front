@@ -61,7 +61,8 @@
 }
 
 .btn:hover {
-    transform: scale(0.98);
+    transform: scale(0.99);
+    filter: brightness(1.1);
 }
 
 .btn.gradient {
@@ -116,9 +117,22 @@
     transition: all 200ms ease-in-out;
 }
 
+
+
 .pagination a:hover {
     text-decoration: underline;
     text-underline-offset: 0.15rem;
+}
+
+
+.pagination .previous.disabled a,
+.pagination .next.disabled a {
+    color: var(--grayishBlue);
+}
+
+.pagination .previous.disabled a:hover,
+.pagination .next.disabled a:hover {
+    text-decoration: none;
 }
 
 .pagination .active a {
@@ -248,7 +262,7 @@
 
 .loading_wrapper {
     width: fit-content;
-    margin: auto;
+    margin: 5rem auto;
 }
 
 .lds-ellipsis {
