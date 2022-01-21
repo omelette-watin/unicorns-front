@@ -119,17 +119,16 @@ const PostLayout = ({ post }) => {
           {comments.map((comment) => {
             return (
               <div key={comment._id} className={styles.comment}>
-                <p className={styles.author}>{comment.authorName}</p>
-                <p>
-                  Posté le <Date dateString={comment.createdAt} /> à{" "}
-                  <Heure dateString={comment.createdAt} />
+                <p className={styles.comment_content}>
+                  &laquo; {comment.content} &raquo;
                 </p>
-                <p>{comment.content}</p>
-                {user && user._id === comment.authorId && (
-                  <button onClick={handleDelete} value={comment._id}>
-                    delete
-                  </button>
-                )}
+                <p className={styles.comment_infos}>
+                  Posté le <Date dateString={comment.createdAt} /> à{" "}
+                  <Heure dateString={comment.createdAt} /> par{" "}
+                  <Link href={`/users/${post.authorId}`}>
+                    <a className={styles.author}>@{post.authorName}</a>
+                  </Link>
+                </p>
               </div>
             )
           })}

@@ -73,6 +73,7 @@
   display: flex;
   align-items: center;
   width: 100%;
+  margin-bottom: 3rem;
 }
 
 .comments form input {
@@ -99,8 +100,20 @@
 }
 
 .comments .comment {
+  display: flex;
+  flex-direction: column;
   margin: 1rem 0;
+  padding: 1rem 0.5rem 0.5rem;
   border-bottom: 1px solid var(--grayishBlue);
+}
+
+.comments .comment .comment_content {
+  margin-bottom: 0;
+  color: var(--colorDarkBlue)
+}
+
+.comments .comment .comment_infos {
+  font-size: var(--font-sm);
 }
 
 @media screen and (max-width: 690px ) {
