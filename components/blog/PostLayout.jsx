@@ -53,21 +53,26 @@ const PostLayout = ({ post }) => {
     setIsLoading(true)
 
     if (commentContent) {
-      createComment(token, post._id, { content: commentContent })
-        .then((res) => {
-          setCommentContent("")
-          setIsLoading(false)
-          getCommentById(res.id).then((res) => {
-            console.log(res)
-            const newComments = [res.comment, ...comments]
-            setComments(newComments)
+      if (token) {
+        createComment(token, post._id, { content: commentContent })
+          .then((res) => {
+            setCommentContent("")
+            setIsLoading(false)
+            getCommentById(res.id).then((res) => {
+              console.log(res)
+              const newComments = [res.comment, ...comments]
+              setComments(newComments)
+            })
           })
-        })
-        .catch((e) => {
-          setIsLoading(false)
-          console.log(e.response.data.message || e.message)
-          Router.push("/login")
-        })
+          .catch((e) => {
+            setIsLoading(false)
+            console.log(e.response.data.message || e.message)
+            Router.push("/login")
+          })
+      } else {
+        setIsLoading(false)
+        Router.push("/login")
+      }
     } else {
       setIsLoading(false)
     }
@@ -108,6 +113,7 @@ const PostLayout = ({ post }) => {
           </p>
         </div>
         <div className={styles.comments}>
+          <p>Commentaires</p>
           <form onSubmit={handleSubmit}>
             <input
               type="text"
@@ -115,8 +121,12 @@ const PostLayout = ({ post }) => {
               value={commentContent}
               onChange={(e) => setCommentContent(e.target.value)}
             />
-            <button disabled={isLoading} type="submit" className={`btn`}>
-              {isLoading ? "Envoi ..." : "Envoyer"}
+            <button
+              disabled={isLoading || !commentContent}
+              type="submit"
+              className={`btn`}
+            >
+              Envoyer
             </button>
           </form>
           {comments.map((comment) => {

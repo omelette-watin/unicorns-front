@@ -21,11 +21,12 @@
   margin: 0.2rem;
 }
 
-.dev_wrapper a {
+.dev_wrapper a,
+.dev_wrapper a:visited {
   display: block;
   margin: 0.5rem 0 0;
   text-decoration: underline;
-  color: var(--colorDarkBlue);
+  color: var(--white);
 }
 
 .dev_wrapper a:hover {
