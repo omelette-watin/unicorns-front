@@ -5,7 +5,7 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: "eslint:recommended",
+  extends: "next",
   parserOptions: {
     ecmaVersion: 13,
     sourceType: "module",
