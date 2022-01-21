@@ -50,24 +50,27 @@ const PostLayout = ({ post }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     const token = localStorage.getItem("token")
-
     setIsLoading(true)
 
-    createComment(token, post._id, { content: commentContent })
-      .then((res) => {
-        setCommentContent("")
-        setIsLoading(false)
-        getCommentById(res.id).then((res) => {
-          console.log(res)
-          const newComments = [res.comment, ...comments]
-          setComments(newComments)
+    if (commentContent) {
+      createComment(token, post._id, { content: commentContent })
+        .then((res) => {
+          setCommentContent("")
+          setIsLoading(false)
+          getCommentById(res.id).then((res) => {
+            console.log(res)
+            const newComments = [res.comment, ...comments]
+            setComments(newComments)
+          })
         })
-      })
-      .catch((e) => {
-        setIsLoading(false)
-        console.log(e.response.data.message || e.message)
-        Router.push("/login")
-      })
+        .catch((e) => {
+          setIsLoading(false)
+          console.log(e.response.data.message || e.message)
+          Router.push("/login")
+        })
+    } else {
+      setIsLoading(false)
+    }
   }
 
   return (
