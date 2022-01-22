@@ -30,6 +30,7 @@ const RegisterForm = () => {
     if (password.length > 40 || password.length < 8) {
       setIsLoading(false)
       setErrors({ ...errors, password: "Doit faire entre 8 et 40 caractères" })
+      return
     }
 
     if (password !== confirmPassword) {
@@ -38,6 +39,7 @@ const RegisterForm = () => {
         ...errors,
         confirmPassword: "Les mots de passe ne correspondent pas",
       })
+      return
     }
 
     signUp({
