@@ -71,6 +71,7 @@ html {
 *:before,
 *:after {
     box-sizing: border-box;
+    overflow-wrap: break-word;
 }
 
  *::selection {

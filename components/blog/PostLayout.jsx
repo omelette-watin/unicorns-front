@@ -157,7 +157,7 @@ const PostLayout = ({ post }) => {
           {comments.map((comment) => {
             return (
               <div key={comment._id} className={styles.comment}>
-                {user && user._id === comment.authorId && edit !== comment._id && (
+                {edit !== comment._id && (
                   <>
                     <p className={styles.comment_content}>
                       &laquo; {comment.content} &raquo;
