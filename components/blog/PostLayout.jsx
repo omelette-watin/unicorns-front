@@ -2,8 +2,6 @@ import styles from "./PostLayout.module.css"
 import Date from "../helpers/Date"
 import Heure from "../helpers/Heure"
 import Link from "next/link"
-import { ImEye } from "react-icons/im"
-import { MdOutlineComment } from "react-icons/md"
 import { useEffect, useState } from "react"
 import {
   createComment,
@@ -107,13 +105,10 @@ const PostLayout = ({ post }) => {
             </Link>
           </p>
           <p className={styles.content}>{post.content}</p>
-          <p className={styles.stats}>
-            {comments.length} <MdOutlineComment />
-            {post.views} <ImEye />
-          </p>
+          <p className={styles.stats}>{post.views} vues</p>
         </div>
         <div className={styles.comments}>
-          <p>Commentaires</p>
+          <p>Commentaires ({post.comments})</p>
           <form onSubmit={handleSubmit}>
             <input
               type="text"

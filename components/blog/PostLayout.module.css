@@ -18,6 +18,7 @@
 .categories {
   display: flex;
   margin-bottom: 1rem;
+  max-width: 100%;
 }
 
 .categories span {
@@ -51,15 +52,7 @@
 }
 
 .stats {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
   margin-top: 2rem;
-}
-
-.stats svg {
-  margin-left: 0.5rem;
-  margin-right: 1rem;
 }
 
 .content {
@@ -71,7 +64,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 }
 
 .comments form input {
