@@ -8,15 +8,22 @@ import {
   deleteComment,
   getCommentById,
   getCommentsByPostId,
+  updateComment,
 } from "../../services/comment.service"
+import { HiDotsVertical } from "react-icons/hi"
+import { ImCross } from "react-icons/im"
+import { MdEdit } from "react-icons/md"
+import { FaTrashAlt } from "react-icons/fa"
 import { useUser } from "../../contexts/user.context"
-import { logout } from "../../services/auth.service"
 import Router from "next/router"
 
 const PostLayout = ({ post }) => {
   const [comments, setComments] = useState([])
   const [commentContent, setCommentContent] = useState("")
+  const [editContent, setEditContent] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [toggle, setToggle] = useState(null)
+  const [edit, setEdit] = useState(null)
   const { user } = useUser()
 
   useEffect(async () => {
@@ -32,8 +39,7 @@ const PostLayout = ({ post }) => {
     }
   }, [])
 
-  const handleDelete = (e) => {
-    const commentId = e.target.value
+  const handleDelete = (commentId) => {
     const token = localStorage.getItem("token")
     deleteComment(token, commentId)
       .then(() => {
@@ -41,7 +47,7 @@ const PostLayout = ({ post }) => {
       })
       .catch((e) => {
         console.log(e.response.data.message || e.message)
-        logout()
+        Router.push("/login")
       })
   }
 
@@ -57,7 +63,6 @@ const PostLayout = ({ post }) => {
             setCommentContent("")
             setIsLoading(false)
             getCommentById(res.id).then((res) => {
-              console.log(res)
               const newComments = [res.comment, ...comments]
               setComments(newComments)
             })
@@ -74,6 +79,31 @@ const PostLayout = ({ post }) => {
     } else {
       setIsLoading(false)
     }
+  }
+
+  const handleEdit = (e, commentId) => {
+    e.preventDefault()
+    const token = localStorage.getItem("token")
+    setIsLoading(true)
+    updateComment(token, commentId, { content: editContent })
+      .then((res) => {
+        getCommentById(res.id).then((res) => {
+          const indexEditedComment = comments.findIndex(
+            (comment) => comment._id === commentId
+          )
+          const newComments = comments.slice()
+          newComments[indexEditedComment] = res.comment
+
+          setComments(newComments)
+          setIsLoading(false)
+          setEdit(null)
+        })
+      })
+      .catch((e) => {
+        setIsLoading(false)
+        console.log(e.response.data.message || e.message)
+        Router.push("/login")
+      })
   }
 
   return (
@@ -108,7 +138,7 @@ const PostLayout = ({ post }) => {
           <p className={styles.stats}>{post.views} vues</p>
         </div>
         <div className={styles.comments}>
-          <p>Commentaires ({post.comments})</p>
+          <p>Commentaires ({comments.length})</p>
           <form onSubmit={handleSubmit}>
             <input
               type="text"
@@ -121,22 +151,102 @@ const PostLayout = ({ post }) => {
               type="submit"
               className={`btn`}
             >
-              Envoyer
+              {isLoading ? "Envoi" : "Modifier"}
             </button>
           </form>
           {comments.map((comment) => {
             return (
               <div key={comment._id} className={styles.comment}>
-                <p className={styles.comment_content}>
-                  &laquo; {comment.content} &raquo;
-                </p>
-                <p className={styles.comment_infos}>
-                  Posté le <Date dateString={comment.createdAt} /> à{" "}
-                  <Heure dateString={comment.createdAt} /> par{" "}
-                  <Link href={`/users/${post.authorId}`}>
-                    <a className={styles.author}>@{post.authorName}</a>
-                  </Link>
-                </p>
+                {user && user._id === comment.authorId && edit !== comment._id && (
+                  <>
+                    <p className={styles.comment_content}>
+                      &laquo; {comment.content} &raquo;
+                    </p>
+                    <p className={styles.comment_infos}>
+                      Posté le <Date dateString={comment.createdAt} /> à{" "}
+                      <Heure dateString={comment.createdAt} /> par{" "}
+                      <Link href={`/users/${post.authorId}`}>
+                        <a className={styles.author}>@{post.authorName}</a>
+                      </Link>
+                    </p>
+                  </>
+                )}
+                {user && user._id === comment.authorId && edit === comment._id && (
+                  <form
+                    className={styles.edit_form}
+                    onSubmit={(e) => {
+                      handleEdit(e, comment._id)
+                    }}
+                  >
+                    <textarea
+                      value={editContent}
+                      onChange={(e) => setEditContent(e.target.value)}
+                      placeholder={"Modifier le commentaire"}
+                      autoFocus={true}
+                      cols={"80"}
+                      rows={"3"}
+                    />
+
+                    <button
+                      disabled={isLoading}
+                      type="submit"
+                      className={`btn`}
+                    >
+                      Modifier
+                    </button>
+                    <button
+                      className={`btn ${styles.cancel}`}
+                      onClick={() => {
+                        setEdit(null)
+                        setToggle(null)
+                      }}
+                    >
+                      Annuler
+                    </button>
+                  </form>
+                )}
+                {user &&
+                  user._id === comment.authorId &&
+                  toggle !== comment._id &&
+                  edit !== comment._id && (
+                    <HiDotsVertical
+                      className={styles.edit}
+                      onClick={() => setToggle(comment._id)}
+                    />
+                  )}
+
+                {user &&
+                  user._id === comment.authorId &&
+                  toggle === comment._id && (
+                    <ImCross
+                      color={"var(--red)"}
+                      className={styles.edit}
+                      onClick={() => setToggle(null)}
+                    />
+                  )}
+
+                {user &&
+                  user._id === comment.authorId &&
+                  toggle === comment._id && (
+                    <div className={styles.edit_menu}>
+                      <p
+                        onClick={() => {
+                          setEdit(comment._id)
+                          setToggle(null)
+                          setEditContent(comment.content)
+                        }}
+                      >
+                        <MdEdit /> Modifier
+                      </p>
+                      <p
+                        onClick={() => {
+                          handleDelete(comment._id)
+                        }}
+                      >
+                        <FaTrashAlt /> Supprimer
+                      </p>
+                    </div>
+                  )}
               </div>
             )
           })}

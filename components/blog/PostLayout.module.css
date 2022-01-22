@@ -60,6 +60,72 @@
   color: var(--colorBlack);
 }
 
+.comment {
+  position: relative;
+}
+
+.comment .edit {
+  position: absolute;
+  top: 40%;
+  right: 0.2rem;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.comment .edit_menu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 1rem;
+  right: 3rem;
+  padding: 0.8rem;
+  background-color: var(--bgVeryLightGray);
+  z-index: 2;
+  border-radius: 5px;
+  box-shadow: 1px 2px 3px var(--shadow);
+}
+
+.comment .edit_menu p {
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  margin: 0.3rem;
+  color: var(--colorDarkBlue);
+  transition: all 200ms ease-in-out;
+  cursor: pointer;
+}
+
+.comment .edit_menu p:hover {
+  text-decoration: underline;
+  color: var(--colorLimeGreen);
+}
+
+.comment .edit_menu svg {
+  margin-right: 0.7rem;
+}
+
+.comment .edit_form textarea{
+  width: 100%;
+  padding: 0;
+  font-size: var(--font-med);
+  font-family: "Public Sans", sans-serif;
+  color: var(--colorGrayishBlue);
+  background-color: transparent;
+  border: none;
+  outline: none!important;
+  resize: none;
+}
+
+.comment .edit_form button {
+  margin-top: 1rem;
+  font-size: var(--font-sm);
+}
+
+.comment .edit_form button.cancel {
+  background-color: var(--lightGrey);
+  color: var(--black);
+}
+
 .comments form {
   display: flex;
   align-items: center;
@@ -81,8 +147,9 @@
 .comments form button:disabled,
 .comments form button:disabled:hover {
   transform: none;
+  filter: none;
   background-color: var(--lightGrey);
-  color: var(--darkBlue);
+  color: var(--black);
 }
 
 .comments form button {
@@ -124,6 +191,19 @@
     font-size: var(--font-sm);
     margin-top: 2rem;
     align-self: flex-end;
+  }
+
+  .comment {
+    padding-top: 2rem;
+  }
+
+  .comment .edit {
+    top: 0;
+  }
+
+  .comment .edit_menu {
+    top: 0;
+    right: 2rem;
   }
 }
 
