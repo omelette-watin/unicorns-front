@@ -151,7 +151,7 @@ const PostLayout = ({ post }) => {
               type="submit"
               className={`btn`}
             >
-              {isLoading ? "Envoi" : "Modifier"}
+              {isLoading ? "Envoi" : "Envoyer"}
             </button>
           </form>
           {comments.map((comment) => {
@@ -192,7 +192,7 @@ const PostLayout = ({ post }) => {
                       type="submit"
                       className={`btn`}
                     >
-                      Modifier
+                      {isLoading ? "Envoi" : "Modifier"}
                     </button>
                     <button
                       className={`btn ${styles.cancel}`}

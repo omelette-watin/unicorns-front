@@ -58,7 +58,7 @@ const Hero = ({ count }) => {
             </div>
 
             <div className={styles.links}>
-              <Link href={"/#latest-posts"}>
+              <Link href={"/blog"}>
                 <a className={styles.btn}>Voir les derniers articles</a>
               </Link>
               {user ? (
