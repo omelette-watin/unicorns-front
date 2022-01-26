@@ -4,7 +4,7 @@ import { useRouter } from "next/router"
 import { useState } from "react"
 import { signUp } from "../../services/auth.service"
 
-const RegisterForm = () => {
+const RegisterForm = ({ redirect }) => {
   const router = useRouter()
 
   const [username, setUsername] = useState("")
@@ -51,7 +51,11 @@ const RegisterForm = () => {
         const token = res.data.token
         localStorage.setItem("token", token)
 
-        router.push("/dashboard")
+        if (redirect) {
+          router.push(redirect)
+        } else {
+          router.push("/dashboard")
+        }
       })
       .catch((e) => {
         const res = e.response.data.message

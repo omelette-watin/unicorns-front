@@ -5,7 +5,7 @@ import { useState } from "react"
 import { signIn } from "../../services/auth.service"
 import styles from "./Forms.module.css"
 
-const LoginForm = () => {
+const LoginForm = ({ redirect }) => {
   const router = useRouter()
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
@@ -27,7 +27,11 @@ const LoginForm = () => {
         const token = res.data.token
         localStorage.setItem("token", token)
 
-        router.back()
+        if (redirect) {
+          router.push(redirect)
+        } else {
+          router.push("/")
+        }
       })
       .catch((e) => {
         setPassword("")
