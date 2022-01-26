@@ -69,7 +69,7 @@ const PostLayout = ({ post, comment }) => {
               const newComments = [res.comment, ...comments.slice()]
               if (
                 (totalComments > 10 && page < 2) ||
-                newComments.length / page > 10
+                (page && newComments.length / page > 10)
               ) {
                 newComments.pop()
               }
