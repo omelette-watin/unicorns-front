@@ -141,7 +141,8 @@
   width: 100%;
   padding: 1rem 0.5rem;
   margin-right: 2rem;
-  color: var(--colorGrayishBlue);
+  color: var(--colorDarkBlue);
+  font-size: var(--font-med);
   background-color: transparent;
   border: none;
   border-bottom: 1px solid var(--grayishBlue);
