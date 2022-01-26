@@ -185,6 +185,15 @@
   font-size: var(--font-sm);
 }
 
+.loader {
+  display: block;
+  padding: 0.5rem 1rem;
+  margin: 3rem auto 0;
+  color: var(--white);
+  background: var(--bgLimeGreen);
+  border-radius: 5px;
+}
+
 @media screen and (max-width: 690px ) {
   .comments form {
     flex-direction: column;

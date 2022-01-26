@@ -26,12 +26,12 @@ const PostLayout = ({ post }) => {
   const [isDeleting, setIsDeleting] = useState(false)
   const [toggle, setToggle] = useState(null)
   const [edit, setEdit] = useState(null)
-  let page = 1
   const { user } = useUser()
+  const page = Math.ceil(comments.length / 10)
 
   useEffect(async () => {
     if (post.comments) {
-      getCommentsByPostId(post._id, page)
+      getCommentsByPostId(post._id, page + 1)
         .then((res) => {
           const commentsFetched = res.result
           setComments(commentsFetched)
@@ -46,9 +46,7 @@ const PostLayout = ({ post }) => {
     const token = localStorage.getItem("token")
     deleteComment(token, commentId)
       .then(() => {
-        setComments(comments.filter((comment) => comment._id !== commentId))
-        setTotalComments(totalComments - 1)
-        setIsDeleting(false)
+        Router.reload()
       })
       .catch((e) => {
         console.log(e.response.data.message || e.message)
@@ -68,10 +66,16 @@ const PostLayout = ({ post }) => {
             setCommentContent("")
             setIsLoading(false)
             getCommentById(res.id).then((res) => {
-              const newComments = [res.comment, ...comments]
+              const newComments = [res.comment, ...comments.slice()]
+              if (
+                (totalComments > 10 && page < 2) ||
+                newComments.length / page > 10
+              ) {
+                newComments.pop()
+              }
               setComments(newComments)
+              setTotalComments(totalComments + 1)
             })
-            setTotalComments(totalComments + 1)
           })
           .catch((e) => {
             setIsLoading(false)
@@ -114,7 +118,7 @@ const PostLayout = ({ post }) => {
 
   const loadMore = () => {
     if (totalComments > comments.length) {
-      getCommentsByPostId(post._id, page)
+      getCommentsByPostId(post._id, page + 1)
         .then((res) => {
           const newComments = [...comments, ...res.result]
           setComments(newComments)
@@ -272,7 +276,14 @@ const PostLayout = ({ post }) => {
             )
           })}
           {totalComments > comments.length && (
-            <button onClick={loadMore}>Charger plus</button>
+            <button
+              className={`btn ${styles.loader}`}
+              onClick={() => {
+                loadMore()
+              }}
+            >
+              Charger plus
+            </button>
           )}
         </div>
       </div>
