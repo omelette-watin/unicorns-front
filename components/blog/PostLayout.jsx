@@ -81,13 +81,13 @@ const PostLayout = ({ post, comment }) => {
             setIsLoading(false)
             console.log(e.response.data.message || e.message)
             Router.push(
-              `/login?redirect=/blog/${post._id}?current_comment=${commentContent}`
+              `/login?redirect=/blog/${post._id}?current_comment=${commentContent}%23comment`
             )
           })
       } else {
         setIsLoading(false)
         Router.push(
-          `/login?redirect=/blog/${post._id}?current_comment=${commentContent}`
+          `/login?redirect=/blog/${post._id}?current_comment=${commentContent}%23comment`
         )
       }
     } else {
@@ -166,7 +166,7 @@ const PostLayout = ({ post, comment }) => {
         </div>
         <div className={styles.comments}>
           <p>Commentaires ({totalComments})</p>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} id={"comment"}>
             <input
               type="text"
               placeholder={"Laisser un commentaire"}
