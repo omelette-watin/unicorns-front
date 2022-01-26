@@ -196,9 +196,21 @@
     animation-duration: .5s;
 }
 
-
 .bounce-up {
     animation-name: bounceUp;
+}
+
+.rotate {
+    animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes bounce {
@@ -255,7 +267,6 @@
         transform: translateY(0px);
     }
 }
-
 
 /* Loading */
 

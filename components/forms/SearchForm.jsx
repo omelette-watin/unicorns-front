@@ -147,7 +147,8 @@ const SearchForm = () => {
               }}
               disabled={isLoading}
             >
-              <FaRandom /> Article aléatoire
+              <FaRandom className={`${isLoading ? "rotate" : ""}`} /> Article
+              aléatoire
             </button>
           </div>
         </div>
