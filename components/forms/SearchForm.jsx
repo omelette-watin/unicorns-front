@@ -13,6 +13,7 @@ const SearchForm = () => {
   const [views, setViews] = useState(false)
   const [comments, setComments] = useState(false)
   const [toggle, setToggle] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -138,7 +139,14 @@ const SearchForm = () => {
               Rechercher
             </button>
             <span>ou</span>
-            <button className={` ${styles.random} btn`} onClick={randomPost}>
+            <button
+              className={` ${styles.random} btn`}
+              onClick={() => {
+                setIsLoading(true)
+                randomPost()
+              }}
+              disabled={isLoading}
+            >
               <FaRandom /> Article aléatoire
             </button>
           </div>

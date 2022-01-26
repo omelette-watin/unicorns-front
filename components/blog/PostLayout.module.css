@@ -85,17 +85,20 @@
   box-shadow: 1px 2px 3px var(--shadow);
 }
 
-.comment .edit_menu p {
+.comment .edit_menu button {
   display: flex;
   align-items: center;
   line-height: 1;
   margin: 0.3rem;
   color: var(--colorDarkBlue);
   transition: all 200ms ease-in-out;
+  border: none;
+  outline: none;
+  background: none;
   cursor: pointer;
 }
 
-.comment .edit_menu p:hover {
+.comment .edit_menu button:hover {
   text-decoration: underline;
   color: var(--colorLimeGreen);
 }

@@ -23,6 +23,7 @@ const PostLayout = ({ post }) => {
   const [commentContent, setCommentContent] = useState("")
   const [editContent, setEditContent] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false)
   const [toggle, setToggle] = useState(null)
   const [edit, setEdit] = useState(null)
   let page = 1
@@ -47,6 +48,7 @@ const PostLayout = ({ post }) => {
       .then(() => {
         setComments(comments.filter((comment) => comment._id !== commentId))
         setTotalComments(totalComments - 1)
+        setIsDeleting(false)
       })
       .catch((e) => {
         console.log(e.response.data.message || e.message)
@@ -246,7 +248,7 @@ const PostLayout = ({ post }) => {
                   user._id === comment.authorId &&
                   toggle === comment._id && (
                     <div className={styles.edit_menu}>
-                      <p
+                      <button
                         onClick={() => {
                           setEdit(comment._id)
                           setToggle(null)
@@ -254,14 +256,16 @@ const PostLayout = ({ post }) => {
                         }}
                       >
                         <MdEdit /> Modifier
-                      </p>
-                      <p
+                      </button>
+                      <button
+                        disabled={isDeleting}
                         onClick={() => {
+                          setIsDeleting(true)
                           handleDelete(comment._id)
                         }}
                       >
                         <FaTrashAlt /> Supprimer
-                      </p>
+                      </button>
                     </div>
                   )}
               </div>
