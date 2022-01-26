@@ -17,10 +17,10 @@ import { FaTrashAlt } from "react-icons/fa"
 import { useUser } from "../../contexts/user.context"
 import Router from "next/router"
 
-const PostLayout = ({ post }) => {
+const PostLayout = ({ post, comment }) => {
   const [comments, setComments] = useState([])
   const [totalComments, setTotalComments] = useState(post.comments)
-  const [commentContent, setCommentContent] = useState("")
+  const [commentContent, setCommentContent] = useState(comment)
   const [editContent, setEditContent] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
@@ -50,7 +50,7 @@ const PostLayout = ({ post }) => {
       })
       .catch((e) => {
         console.log(e.response.data.message || e.message)
-        Router.push("/login")
+        Router.push(`/login?redirect=/blog/${post._id}`)
       })
   }
 
@@ -80,11 +80,15 @@ const PostLayout = ({ post }) => {
           .catch((e) => {
             setIsLoading(false)
             console.log(e.response.data.message || e.message)
-            Router.push("/login")
+            Router.push(
+              `/login?redirect=/blog/${post._id}?current_comment=${commentContent}`
+            )
           })
       } else {
         setIsLoading(false)
-        Router.push("/login")
+        Router.push(
+          `/login?redirect=/blog/${post._id}?current_comment=${commentContent}`
+        )
       }
     } else {
       setIsLoading(false)
@@ -112,7 +116,7 @@ const PostLayout = ({ post }) => {
       .catch((e) => {
         setIsLoading(false)
         console.log(e.response.data.message || e.message)
-        Router.push("/login")
+        Router.push(`/login?redirect=/blog/${post._id}`)
       })
   }
 
