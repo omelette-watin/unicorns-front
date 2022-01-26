@@ -69,11 +69,13 @@ const AllPosts = (props) => {
     <>
       <BlogLayout>
         <div className="container">
-          <p style={{ marginLeft: "1rem" }}>
-            {props.totalCount
-              ? `Page ${props.currentPage} sur environ ${props.totalCount} résultats`
-              : "Aucun résultat pour votre recherche"}
-          </p>
+          {!isLoading && (
+            <p style={{ marginLeft: "1rem" }}>
+              {props.totalCount
+                ? `Page ${props.currentPage} sur environ ${props.totalCount} résultats`
+                : "Aucun résultat pour votre recherche"}
+            </p>
+          )}
           <div className="posts">{content}</div>
 
           {props.totalCount > 4 && !isLoading && (

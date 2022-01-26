@@ -10,6 +10,11 @@ export const getAllPublishedPostsIds = async () => {
   return data.ids
 }
 
+export const getRandomPost = async () => {
+  const { data } = await api.get("/posts/random")
+  return data
+}
+
 export const getAllPublishedPosts = async (
   page = 1,
   search = "",

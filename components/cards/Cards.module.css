@@ -43,11 +43,11 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 0.4rem;
 }
 
 .stats svg {
   margin-right: 1rem;
+  margin-left: 0.5rem;
 }
 
 @media screen and (max-width: 350px ) {

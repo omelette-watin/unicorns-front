@@ -19,16 +19,18 @@ import Router from "next/router"
 
 const PostLayout = ({ post }) => {
   const [comments, setComments] = useState([])
+  const [totalComments, setTotalComments] = useState(post.comments)
   const [commentContent, setCommentContent] = useState("")
   const [editContent, setEditContent] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [toggle, setToggle] = useState(null)
   const [edit, setEdit] = useState(null)
+  let page = 1
   const { user } = useUser()
 
   useEffect(async () => {
     if (post.comments) {
-      getCommentsByPostId(post._id)
+      getCommentsByPostId(post._id, page)
         .then((res) => {
           const commentsFetched = res.result
           setComments(commentsFetched)
@@ -44,6 +46,7 @@ const PostLayout = ({ post }) => {
     deleteComment(token, commentId)
       .then(() => {
         setComments(comments.filter((comment) => comment._id !== commentId))
+        setTotalComments(totalComments - 1)
       })
       .catch((e) => {
         console.log(e.response.data.message || e.message)
@@ -66,6 +69,7 @@ const PostLayout = ({ post }) => {
               const newComments = [res.comment, ...comments]
               setComments(newComments)
             })
+            setTotalComments(totalComments + 1)
           })
           .catch((e) => {
             setIsLoading(false)
@@ -106,6 +110,19 @@ const PostLayout = ({ post }) => {
       })
   }
 
+  const loadMore = () => {
+    if (totalComments > comments.length) {
+      getCommentsByPostId(post._id, page)
+        .then((res) => {
+          const newComments = [...comments, ...res.result]
+          setComments(newComments)
+        })
+        .catch((e) => {
+          console.log(e.response.data.message || e.message)
+        })
+    }
+  }
+
   return (
     <div className={styles.blog_wrapper}>
       <div className={`${styles.blog_container} container p-all`}>
@@ -138,7 +155,7 @@ const PostLayout = ({ post }) => {
           <p className={styles.stats}>{post.views} vues</p>
         </div>
         <div className={styles.comments}>
-          <p>Commentaires ({comments.length})</p>
+          <p>Commentaires ({totalComments})</p>
           <form onSubmit={handleSubmit}>
             <input
               type="text"
@@ -250,6 +267,9 @@ const PostLayout = ({ post }) => {
               </div>
             )
           })}
+          {totalComments > comments.length && (
+            <button onClick={loadMore}>Charger plus</button>
+          )}
         </div>
       </div>
     </div>
