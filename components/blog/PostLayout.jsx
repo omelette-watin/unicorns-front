@@ -178,7 +178,7 @@ const PostLayout = ({ post, comment }) => {
               type="submit"
               className={`btn`}
             >
-              {isLoading ? "Envoi" : "Envoyer"}
+              Envoyer
             </button>
           </form>
           {comments.map((comment) => {
