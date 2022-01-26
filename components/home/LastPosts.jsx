@@ -1,8 +1,6 @@
 import styles from "./LastPosts.module.css"
 import Date from "../helpers/Date"
 import Link from "next/link"
-import { useEffect, useState } from "react"
-import { getAllPublishedPosts } from "../../services/post.service"
 
 const Post = ({ id, title, content, author, date }) => (
   <div className={styles.post}>
@@ -20,18 +18,7 @@ const Post = ({ id, title, content, author, date }) => (
   </div>
 )
 
-const LastPosts = () => {
-  const [lastComments, setLastComments] = useState([])
-  useEffect(() => {
-    getAllPublishedPosts(1, "", "", "latest", 3)
-      .then((res) => {
-        const commentsFetched = res.result
-        setLastComments(commentsFetched)
-      })
-      .catch((e) => {
-        console.log(e.response.data.message || e.message)
-      })
-  })
+const LastPosts = ({ posts }) => {
   return (
     <section className={styles.last_posts} id={"latest-posts"}>
       <div className={"container p-all"}>
@@ -41,7 +28,7 @@ const LastPosts = () => {
           </h1>
         </div>
         <div className={styles.content}>
-          {lastComments.map((post) => (
+          {posts.map((post) => (
             <Post
               title={post.title}
               content={post.content.slice(0, 300)}
