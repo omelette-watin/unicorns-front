@@ -207,7 +207,7 @@ const PostLayout = ({ post }) => {
                     />
 
                     <button
-                      disabled={isLoading}
+                      disabled={isLoading || !editContent}
                       type="submit"
                       className={`btn`}
                     >
