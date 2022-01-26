@@ -4,6 +4,7 @@ import { ImCross } from "react-icons/im"
 import { FaRandom } from "react-icons/fa"
 import Router from "next/router"
 import { useState } from "react"
+import { getRandomPost } from "../../services/post.service"
 
 const SearchForm = () => {
   const [title, setTitle] = useState("")
@@ -20,6 +21,13 @@ const SearchForm = () => {
         category ? `&category=${category}` : ""
       }${order === "latest" ? "" : `&order=${order}`}`
     )
+  }
+
+  const randomPost = () => {
+    getRandomPost().then((res) => {
+      console.log(res)
+      Router.push(`/blog/${res.randomPost._id}`)
+    })
   }
 
   return (
@@ -130,7 +138,7 @@ const SearchForm = () => {
               Rechercher
             </button>
             <span>ou</span>
-            <button className={` ${styles.random} btn`}>
+            <button className={` ${styles.random} btn`} onClick={randomPost}>
               <FaRandom /> Article aléatoire
             </button>
           </div>
