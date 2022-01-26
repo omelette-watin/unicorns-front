@@ -34,7 +34,8 @@
   color: var(--colorGrayishBlue);
 }
 
-.author {
+.author,
+.author:visited {
   color: var(--lightBlue);
   font-weight: 600;
 }

@@ -18,7 +18,8 @@
   border-radius: 5px;
 }
 
-.author {
+.author,
+.author:visited {
   color: var(--lightBlue);
   font-weight: 600;
 }
