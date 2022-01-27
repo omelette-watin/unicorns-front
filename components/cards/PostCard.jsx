@@ -13,7 +13,7 @@ const PostCard = ({ post }) => {
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")))
-  })
+  }, [])
 
   const handleFav = () => {
     if (!user) {
@@ -29,6 +29,7 @@ const PostCard = ({ post }) => {
               "user",
               JSON.stringify({ ...user, favs: newFavs })
             )
+            setUser(JSON.parse(localStorage.getItem("user")))
           })
           .catch((e) => {
             console.log(e.response.data.message || e.message)
@@ -43,6 +44,7 @@ const PostCard = ({ post }) => {
               "user",
               JSON.stringify({ ...user, favs: newFavs })
             )
+            setUser(JSON.parse(localStorage.getItem("user")))
           })
           .catch((e) => {
             console.log(e.response.data.message || e.message)
@@ -91,6 +93,11 @@ const PostCard = ({ post }) => {
       <div className={styles.footer}>
         <div className={styles.fav}>
           <RiHeart3Fill
+            title={
+              user && user.favs && user.favs.includes(post._id)
+                ? "Supprimer des favoris"
+                : "Ajouter aux favoris"
+            }
             size={24}
             color={
               user && user.favs && user.favs.includes(post._id)
@@ -101,8 +108,8 @@ const PostCard = ({ post }) => {
           />
         </div>
         <p className={styles.stats}>
-          {post.comments} <MdOutlineComment />
-          {post.views} <ImEye />
+          {post.comments} <MdOutlineComment title={"Commentaires"} />
+          {post.views} <ImEye title={"Vues"} />
         </p>
       </div>
     </div>

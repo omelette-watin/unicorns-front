@@ -4,16 +4,18 @@ import Link from "next/link"
 
 const Post = ({ id, title, content, author, date }) => (
   <div className={styles.post}>
-    <Link href={`/blog/${id}`}>
-      <a />
-    </Link>
     <div className={styles.title}>
-      <h3>{title}</h3>
+      <h3>{title} ...</h3>
     </div>
     <div className={styles.date}>
       <Date dateString={date} />
     </div>
-    <div className={styles.text}>{content} ... </div>
+    <div className={styles.text}>
+      {content} ...{" "}
+      <Link href={`/blog/${id}`}>
+        <a>Lire la suite</a>
+      </Link>
+    </div>
     <div className={styles.author}>@{author}</div>
   </div>
 )
@@ -30,7 +32,7 @@ const LastPosts = ({ posts }) => {
         <div className={styles.content}>
           {posts.map((post) => (
             <Post
-              title={post.title}
+              title={post.title.slice(0, 25)}
               content={post.content.slice(0, 300)}
               author={post.authorName}
               date={post.publishedAt}

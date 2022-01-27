@@ -18,7 +18,6 @@
 }
 
 .post {
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -32,13 +31,21 @@
   transition: all 200ms ease-in-out;
 }
 
-.post:hover {
-  transform: scale(1.01);
+.post a {
+  display: block;
+  width: fit-content;
+  margin: 1rem auto;
 }
 
-.post a {
-  position: absolute;
-  inset: 0;
+.post a,
+.post a:visited {
+  color: var(--colorDarkBlue);
+  font-weight: 500;
+}
+
+.post a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.15rem;
 }
 
 .title {
@@ -57,7 +64,7 @@
 }
 
 .author {
-  margin: 2rem 0 0 auto;
+  margin: 0 0 0 auto;
   color: var(--colorDarkBlue);
   font-style: italic;
 }

@@ -47,6 +47,7 @@
 }
 
 .fav svg {
+  margin-left: 0.5rem;
   transition: all 200ms ease-in-out;
 }
 
