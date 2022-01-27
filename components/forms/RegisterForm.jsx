@@ -187,13 +187,13 @@ const RegisterForm = ({ redirect }) => {
           </button>
           <p>
             Vous avez déjà un compte ?
-            <Link href={"/login"}>
+            <Link href={redirect ? `/login?redirect=${redirect}` : "/login"}>
               <a>Connectez-vous !</a>
             </Link>
           </p>
         </div>
         <div className={styles.home}>
-          <Link href={"/"}>
+          <Link href={redirect ? redirect : "/"}>
             <a>Revenir sur le site</a>
           </Link>
         </div>

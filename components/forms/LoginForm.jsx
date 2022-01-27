@@ -103,13 +103,15 @@ const LoginForm = ({ redirect }) => {
           </button>
           <p>
             Pas encore de compte ?
-            <Link href={"/register"}>
+            <Link
+              href={redirect ? `/register?redirect=${redirect}` : "/register"}
+            >
               <a>Créez-en un !</a>
             </Link>
           </p>
         </div>
         <div className={styles.home}>
-          <Link href={"/"}>
+          <Link href={redirect ? redirect : "/"}>
             <a>Revenir sur le site</a>
           </Link>
         </div>
