@@ -40,6 +40,19 @@
   color: var(--colorBlack);
 }
 
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fav {
+}
+
+.fav:hover svg {
+  transform: scale(1.20);
+}
+
 .stats {
   display: flex;
   justify-content: flex-end;

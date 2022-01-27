@@ -70,6 +70,24 @@ export const getSavedPostById = async (token, id) => {
   return data
 }
 
+export const getFavs = async (
+  token,
+  page,
+  search = "",
+  order = "latest",
+  limit = 10
+) => {
+  const { data } = await api.get(
+    `/posts/favs?page=${page}&limit=${limit}&q=${search}&order=${order}`,
+    {
+      headers: {
+        "x-access-token": token,
+      },
+    }
+  )
+  return data
+}
+
 export const createPost = async (token, body) => {
   const { data } = await api.post("/posts", body, {
     headers: {
@@ -112,6 +130,28 @@ export const updatePost = async (token, id, body) => {
 
 export const deleteUser = async (token, id) => {
   const { data } = await api.delete(`/posts/${id}`, {
+    headers: {
+      "x-access-token": token,
+    },
+  })
+  return data
+}
+
+export const addToFavs = async (token, id) => {
+  const { data } = await api.put(
+    `/posts/favs/${id}`,
+    {},
+    {
+      headers: {
+        "x-access-token": token,
+      },
+    }
+  )
+  return data
+}
+
+export const removeFromFavs = async (token, id) => {
+  const { data } = await api.delete(`/posts/favs/${id}`, {
     headers: {
       "x-access-token": token,
     },
