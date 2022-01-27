@@ -22,7 +22,7 @@ const Home = ({ userCount, lastPosts }) => {
 
 export async function getServerSideProps() {
   const userCount = await countAllUser()
-  const lastPosts = await getAllPublishedPosts(1, "", "", "latest", 3)
+  const lastPosts = await getAllPublishedPosts(1, "", "", "latest", "", "", 3)
   await addViewToSite()
   return {
     props: {
