@@ -104,7 +104,11 @@ const LoginForm = ({ redirect }) => {
           <p>
             Pas encore de compte ?
             <Link
-              href={redirect ? `/register?redirect=${redirect}` : "/register"}
+              href={
+                redirect
+                  ? `/register?redirect=${redirect.replace("#", "%23")}`
+                  : "/register"
+              }
             >
               <a>Créez-en un !</a>
             </Link>

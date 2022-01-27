@@ -187,7 +187,13 @@ const RegisterForm = ({ redirect }) => {
           </button>
           <p>
             Vous avez déjà un compte ?
-            <Link href={redirect ? `/login?redirect=${redirect}` : "/login"}>
+            <Link
+              href={
+                redirect
+                  ? `/login?redirect=${redirect.replace("#", "%23")}`
+                  : "/login"
+              }
+            >
               <a>Connectez-vous !</a>
             </Link>
           </p>
