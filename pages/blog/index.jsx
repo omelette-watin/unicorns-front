@@ -7,11 +7,15 @@ import PostCard from "../../components/cards/PostCard"
 
 const AllPosts = (props) => {
   const [isLoading, setLoading] = useState(false)
-  const startLoading = () => {
-    setLoading(true)
+  const startLoading = (url) => {
+    if (url.includes("blog")) {
+      setLoading(true)
+    }
   }
-  const stopLoading = () => {
-    setLoading(false)
+  const stopLoading = (url) => {
+    if (url.includes("blog")) {
+      setLoading(false)
+    }
   }
 
   useEffect(() => {
