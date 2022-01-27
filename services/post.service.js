@@ -20,10 +20,12 @@ export const getAllPublishedPosts = async (
   search = "",
   category = "",
   order = "latest",
+  views = "",
+  comments = "",
   limit = 10
 ) => {
   const { data } = await api.get(
-    `/posts/?page=${page}&limit=${limit}&q=${search}&order=${order}&category=${category}`
+    `/posts/?page=${page}&limit=${limit}&q=${search}&order=${order}&category=${category}&views=${views}&comments=${comments}`
   )
   return data
 }

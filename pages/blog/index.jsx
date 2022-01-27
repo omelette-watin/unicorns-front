@@ -40,6 +40,10 @@ const AllPosts = (props) => {
         props.currentQuery.category
           ? `&category=${props.currentQuery.category}`
           : ""
+      }${props.currentQuery.views ? `&views=${props.currentQuery.views}` : ""}${
+        props.currentQuery.comments
+          ? `&comments=${props.currentQuery.comments}`
+          : ""
       }`
     )
   }
@@ -109,12 +113,22 @@ export async function getServerSideProps({ query }) {
   const search = query.q || ""
   const category = query.category || ""
   const order = query.order || "latest"
+  const views = query.views || ""
+  const comments = query.comments || ""
   const page = parseInt(query.page) || 1
-  const posts = await getAllPublishedPosts(page, search, category, order, 4)
+  const posts = await getAllPublishedPosts(
+    page,
+    search,
+    category,
+    order,
+    views,
+    comments,
+    4
+  )
 
   return {
     props: {
-      currentQuery: { search, order, category },
+      currentQuery: { search, order, category, views, comments },
       totalCount: posts.meta.totalCount,
       pageCount: posts.meta.pageCount,
       currentPage: posts.meta.currentPage,

@@ -20,7 +20,9 @@ const SearchForm = () => {
     Router.push(
       `/blog?${title ? `q=${title}` : ""}${
         category ? `&category=${category}` : ""
-      }${order === "latest" ? "" : `&order=${order}`}`
+      }${order === "latest" ? "" : `&order=${order}`}${
+        views ? `&views=1` : ""
+      }${comments ? `&comments=1` : ""}`
     )
   }
 
