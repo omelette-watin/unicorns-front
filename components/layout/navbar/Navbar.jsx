@@ -175,10 +175,28 @@ const Navbar = ({ active }) => {
                 ) : (
                   <div className={styles.mobile_sign}>
                     <Link href={"/login"}>
-                      <a className={styles.little}>Se connecter</a>
+                      <a
+                        className={styles.little}
+                        onClick={() => {
+                          document
+                            .querySelector("body")
+                            .classList.remove("no-scroll")
+                        }}
+                      >
+                        Se connecter
+                      </a>
                     </Link>
                     <Link href={"/register"}>
-                      <a className={`btn gradient`}>S'inscrire</a>
+                      <a
+                        className={`btn gradient`}
+                        onClick={() => {
+                          document
+                            .querySelector("body")
+                            .classList.remove("no-scroll")
+                        }}
+                      >
+                        S'inscrire
+                      </a>
                     </Link>
                   </div>
                 )}
