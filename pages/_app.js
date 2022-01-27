@@ -2,7 +2,7 @@ import { ThemeProvider } from "next-themes"
 import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
 import { UserContext } from "../contexts/user.context"
-import { me } from "../services/auth.service";
+import { me } from "../services/auth.service"
 
 import Layout from "../components/layout/Layout"
 import AuthorizationError from "../components/errors/authorization/AuthorizationError"
@@ -21,8 +21,10 @@ const App = ({ Component, pageProps }) => {
 
       if (authUser) {
         setUser(authUser)
+        localStorage.setItem("user", JSON.stringify(authUser))
       } else {
         localStorage.removeItem("token")
+        localStorage.removeItem("user")
         setUser(null)
       }
     } else {
@@ -42,18 +44,23 @@ const App = ({ Component, pageProps }) => {
     return (
       <ThemeProvider disableTransitionOnChange={true}>
         <Layout title={"Non autorisé"}>
-          <AuthorizationError/>
+          <AuthorizationError />
         </Layout>
       </ThemeProvider>
     )
   }
 
-  if (pageProps.protected && user && pageProps.userTypes && pageProps.userTypes.indexOf(user.role) === -1) {
+  if (
+    pageProps.protected &&
+    user &&
+    pageProps.userTypes &&
+    pageProps.userTypes.indexOf(user.role) === -1
+  ) {
     return (
       <UserContext.Provider value={user}>
         <ThemeProvider disableTransitionOnChange={true}>
           <Layout title={"Non autorisé"}>
-            <AuthorizationError/>
+            <AuthorizationError />
           </Layout>
         </ThemeProvider>
       </UserContext.Provider>
@@ -74,7 +81,7 @@ const App = ({ Component, pageProps }) => {
     <UserContext.Provider value={user}>
       <ThemeProvider disableTransitionOnChange={true}>
         <Layout title={pageProps.title}>
-          <Component {...pageProps}/>
+          <Component {...pageProps} />
         </Layout>
       </ThemeProvider>
     </UserContext.Provider>
