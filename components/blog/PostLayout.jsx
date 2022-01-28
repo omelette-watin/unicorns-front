@@ -49,8 +49,12 @@ const PostLayout = ({ post, comment }) => {
         Router.reload()
       })
       .catch((e) => {
-        console.log(e.response.data.message || e.message)
-        Router.push(`/login?redirect=/blog/${post._id}`)
+        if (e.response.status === 404) {
+          Router.push("/404")
+        } else {
+          console.log(e.response.data.message || e.message)
+          Router.push(`/login?redirect=/blog/${post._id}`)
+        }
       })
   }
 
@@ -78,14 +82,16 @@ const PostLayout = ({ post, comment }) => {
             })
           })
           .catch((e) => {
-            setIsLoading(false)
-            console.log(e.response.data.message || e.message)
-            Router.push(
-              `/login?redirect=/blog/${post._id}?current_comment=${commentContent}%23comment`
-            )
+            if (e.response.status === 404) {
+              Router.push("/404")
+            } else {
+              console.log(e.response.data.message || e.message)
+              Router.push(
+                `/login?redirect=/blog/${post._id}?current_comment=${commentContent}%23comment`
+              )
+            }
           })
       } else {
-        setIsLoading(false)
         Router.push(
           `/login?redirect=/blog/${post._id}?current_comment=${commentContent}%23comment`
         )
@@ -99,25 +105,32 @@ const PostLayout = ({ post, comment }) => {
     e.preventDefault()
     const token = localStorage.getItem("token")
     setIsLoading(true)
-    updateComment(token, commentId, { content: editContent })
-      .then((res) => {
-        getCommentById(res.id).then((res) => {
-          const indexEditedComment = comments.findIndex(
-            (comment) => comment._id === commentId
-          )
-          const newComments = comments.slice()
-          newComments[indexEditedComment] = res.comment
+    if (editContent) {
+      updateComment(token, commentId, { content: editContent })
+        .then((res) => {
+          getCommentById(res.id).then((res) => {
+            const indexEditedComment = comments.findIndex(
+              (comment) => comment._id === commentId
+            )
+            const newComments = comments.slice()
+            newComments[indexEditedComment] = res.comment
 
-          setComments(newComments)
-          setIsLoading(false)
-          setEdit(null)
+            setComments(newComments)
+            setIsLoading(false)
+            setEdit(null)
+          })
         })
-      })
-      .catch((e) => {
-        setIsLoading(false)
-        console.log(e.response.data.message || e.message)
-        Router.push(`/login?redirect=/blog/${post._id}`)
-      })
+        .catch((e) => {
+          if (e.response.status === 404) {
+            Router.push("/404")
+          } else {
+            console.log(e.response.data.message || e.message)
+            Router.push(`/login?redirect=/blog/${post._id}`)
+          }
+        })
+    } else {
+      setIsLoading(false)
+    }
   }
 
   const loadMore = () => {

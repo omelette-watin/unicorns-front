@@ -32,8 +32,12 @@ const PostCard = ({ post }) => {
             setUser(JSON.parse(localStorage.getItem("user")))
           })
           .catch((e) => {
-            console.log(e.response.data.message || e.message)
-            Router.push(`/login?redirect=/blog%23${post._id}`)
+            if (e.response.status === 404) {
+              Router.push("/404")
+            } else {
+              console.log(e.response.data.message || e.message)
+              Router.push(`/login?redirect=/blog%23${post._id}`)
+            }
           })
       } else {
         removeFromFavs(token, post._id)
@@ -47,8 +51,12 @@ const PostCard = ({ post }) => {
             setUser(JSON.parse(localStorage.getItem("user")))
           })
           .catch((e) => {
-            console.log(e.response.data.message || e.message)
-            Router.push(`/login?redirect=/blog%23${post._id}`)
+            if (e.response.status === 404) {
+              Router.push("/404")
+            } else {
+              console.log(e.response.data.message || e.message)
+              Router.push(`/login?redirect=/blog%23${post._id}`)
+            }
           })
       }
     }
