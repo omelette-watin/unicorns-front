@@ -16,14 +16,15 @@
 }
 
 .categories {
-  display: flex;
-  margin-bottom: 1rem;
-  max-width: 100%;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .categories span {
+  display: inline-block;
   padding: 0.3rem 0.7rem;
   margin-right: 0.4rem;
+  margin-top: 0.4rem;
   background-color: var(--bgLimeGreen);
   color: var(--white);
   border-radius: 5px;
@@ -218,16 +219,5 @@
   .comment .edit_menu {
     top: 0;
     right: 2rem;
-  }
-}
-
-@media screen and (max-width: 350px ) {
-  .categories {
-    flex-direction: column;
-  }
-
-  .categories span {
-    margin-bottom: 0.5rem;
-    width: fit-content;
   }
 }
