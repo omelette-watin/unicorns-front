@@ -1,0 +1,40 @@
+.dashboard_wrapper {
+  background-color: var(--bgVeryLightGray);
+}
+
+.dashboard_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start ;
+  min-height: calc(100vh);
+}
+
+.children_container {
+  flex: 1;
+}
+
+.closed {}
+
+.toggler_mobile {
+  display: none;
+}
+
+@media screen and (max-width: 1050px) {
+  .dashboard_container {
+    position: relative;
+    display: block;
+    z-index: 1;
+  }
+
+  .toggler_mobile {
+    position: absolute;
+    top: 2.5rem;
+    right: 1.5rem;
+    display: block;
+    z-index: 40;
+  }
+
+  .toggler_desktop {
+    display: none;
+  }
+}
