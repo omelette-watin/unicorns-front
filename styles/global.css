@@ -151,7 +151,6 @@ h3 {
   }
 }
 
-
 @media (min-width: 64em) {
   body {
     font-size: var(--font-med);

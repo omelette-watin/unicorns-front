@@ -122,7 +122,6 @@
   text-underline-offset: 0.15rem;
 }
 
-
 .pagination .previous.disabled a,
 .pagination .next.disabled a {
   color: var(--grayishBlue);
@@ -136,7 +135,6 @@
 .pagination .active a {
   color: var(--colorDarkBlue);
 }
-
 
 @media screen and (max-width: 450px) {
   .pagination {

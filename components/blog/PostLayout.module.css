@@ -53,13 +53,32 @@
   text-underline-offset: 0.15rem;
 }
 
-.stats {
-  margin-top: 2rem;
-}
-
 .content {
   text-align: justify;
   color: var(--colorBlack);
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.favs {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+
+.favs svg {
+  margin-left: 0.4rem;
+  transition: color 200ms ease-in-out;
+}
+
+.favs:hover {
+  text-decoration: underline;
 }
 
 .comment {
@@ -196,7 +215,7 @@
   border-radius: 5px;
 }
 
-@media screen and (max-width: 690px ) {
+@media screen and (max-width: 690px) {
   .comments form {
     flex-direction: column;
     align-items: flex-start;
@@ -219,5 +238,16 @@
   .comment .edit_menu {
     top: 0;
     right: 2rem;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .footer {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .stats {
+    margin-bottom: 1rem;
   }
 }

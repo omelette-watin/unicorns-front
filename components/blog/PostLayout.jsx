@@ -16,6 +16,8 @@ import { MdEdit } from "react-icons/md"
 import { FaTrashAlt } from "react-icons/fa"
 import { useUser } from "../../contexts/user.context"
 import Router from "next/router"
+import { addToFavs, removeFromFavs } from "../../services/post.service"
+import { RiHeart3Fill } from "react-icons/ri"
 
 const PostLayout = ({ post, comment }) => {
   const [comments, setComments] = useState([])
@@ -26,7 +28,8 @@ const PostLayout = ({ post, comment }) => {
   const [isDeleting, setIsDeleting] = useState(false)
   const [toggle, setToggle] = useState(null)
   const [edit, setEdit] = useState(null)
-  const { user } = useUser()
+  const { user } = useUser(null)
+  const [currentUser, setCurrentUser] = useState()
   const page = Math.ceil(comments.length / 10)
 
   useEffect(async () => {
@@ -42,6 +45,56 @@ const PostLayout = ({ post, comment }) => {
     }
   }, [])
 
+  useEffect(() => {
+    setCurrentUser(JSON.parse(localStorage.getItem("user")))
+  }, [])
+
+  const handleFav = () => {
+    if (!user) {
+      Router.push(`/login?redirect=/blog%23${post._id}`)
+    } else {
+      const token = localStorage.getItem("token")
+      if (!currentUser.favs || !currentUser.favs.includes(post._id)) {
+        addToFavs(token, post._id)
+          .then(() => {
+            const newFavs = user.favs.slice() || []
+            newFavs.push(post._id)
+            localStorage.setItem(
+              "user",
+              JSON.stringify({ ...currentUser, favs: newFavs })
+            )
+            setCurrentUser(JSON.parse(localStorage.getItem("user")))
+          })
+          .catch((e) => {
+            if (e.response.status === 404) {
+              Router.push("/404")
+            } else {
+              console.log(e.response.data.message || e.message)
+              Router.push(`/login?redirect=/blog%23${post._id}`)
+            }
+          })
+      } else {
+        removeFromFavs(token, post._id)
+          .then(() => {
+            const newFavs =
+              currentUser.favs.slice().filter((fav) => fav !== post._id) || []
+            localStorage.setItem(
+              "user",
+              JSON.stringify({ ...currentUser, favs: newFavs })
+            )
+            setCurrentUser(JSON.parse(localStorage.getItem("user")))
+          })
+          .catch((e) => {
+            if (e.response.status === 404) {
+              Router.push("/404")
+            } else {
+              console.log(e.response.data.message || e.message)
+              Router.push(`/login?redirect=/blog%23${post._id}`)
+            }
+          })
+      }
+    }
+  }
   const handleDelete = (commentId) => {
     const token = localStorage.getItem("token")
     deleteComment(token, commentId)
@@ -175,7 +228,33 @@ const PostLayout = ({ post, comment }) => {
             </Link>
           </p>
           <p className={styles.content}>{post.content}</p>
-          <p className={styles.stats}>{post.views} vues</p>
+          <div className={styles.footer}>
+            <div className={styles.stats}>{post.views} vues</div>
+            <div className={styles.favs} onClick={handleFav}>
+              {currentUser &&
+              currentUser.favs &&
+              currentUser.favs.includes(post._id)
+                ? "Supprimer des favoris"
+                : "Ajouter aux favoris"}
+              <RiHeart3Fill
+                title={
+                  currentUser &&
+                  currentUser.favs &&
+                  currentUser.favs.includes(post._id)
+                    ? "Supprimer des favoris"
+                    : "Ajouter aux favoris"
+                }
+                size={24}
+                color={
+                  currentUser &&
+                  currentUser.favs &&
+                  currentUser.favs.includes(post._id)
+                    ? "var(--red)"
+                    : ""
+                }
+              />
+            </div>
+          </div>
         </div>
         <div className={styles.comments}>
           <p>Commentaires ({totalComments})</p>

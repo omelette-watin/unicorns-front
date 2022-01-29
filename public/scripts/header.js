@@ -1,4 +1,3 @@
-
 window.onscroll = function() {
     let scrollY = window.pageYOffset || document.documentElement.scrollTop;
     let header = document.querySelector('#header');
