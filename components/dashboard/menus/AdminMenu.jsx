@@ -12,11 +12,6 @@ import { RiArticleLine, RiDraftLine, RiUser3Fill } from "react-icons/ri"
 const AdminMenu = ({ title, toggled }) => {
   return (
     <div className={`${toggled && styles.closed} ${styles.menu}`}>
-      <h2>
-        <Link href={"/dashboard"}>
-          <a>Dashboard</a>
-        </Link>
-      </h2>
       <ul>
         <p>
           <FaHouseUser /> Moi
