@@ -1,0 +1,21 @@
+.last_comments {
+  padding: 3rem;
+}
+
+.last_comments a:last-child {
+  display: block;
+  width: fit-content;
+  margin: auto;
+  color: var(--colorDarkBlue);
+}
+
+.last_comments a:last-child:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 650px ) {
+  .last_comments {
+    padding: 0;
+  }
+
+}
