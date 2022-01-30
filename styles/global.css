@@ -94,7 +94,7 @@ body {
 a,
 a:visited {
   text-decoration: none;
-  color: unset;
+  color: inherit;
   cursor: pointer;
 }
 
