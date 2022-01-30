@@ -32,7 +32,7 @@ const LastPosts = ({ posts }) => {
         <div className={styles.content}>
           {posts.map((post) => (
             <Post
-              title={post.title.slice(0, 25)}
+              title={post.title}
               content={post.content.slice(0, 300)}
               author={post.authorName}
               date={post.publishedAt}
