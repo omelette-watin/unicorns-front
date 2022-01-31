@@ -19,10 +19,15 @@
   display: none;
 }
 
+.toggler_desktop {
+  margin-bottom: 2rem;
+}
+
 @media screen and (max-width: 1050px) {
   .dashboard_container {
     position: relative;
     display: block;
+    flex-direction: column;
     z-index: 1;
   }
 

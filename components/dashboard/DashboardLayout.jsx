@@ -2,9 +2,10 @@ import styles from "./DashboardLayout.module.css"
 import { useUser } from "../../contexts/user.context"
 import ReaderMenu from "./menus/ReaderMenu"
 import { useState } from "react"
-import { RiArrowLeftLine, RiMenuUnfoldFill } from "react-icons/ri"
+import { RiArrowLeftLine } from "react-icons/ri"
 import AuthorMenu from "./menus/AuthorMenu"
 import AdminMenu from "./menus/AdminMenu"
+import { CgMenuGridR } from "react-icons/cg"
 
 const DashboardLayout = ({ children, secondTitle }) => {
   const { user } = useUser()
@@ -12,7 +13,7 @@ const DashboardLayout = ({ children, secondTitle }) => {
 
   return (
     <div className={styles.dashboard_wrapper}>
-      <div className={`${styles.dashboard_container} container p-all`}>
+      <div className={`${styles.dashboard_container}  p-all`}>
         {user.role === "reader" && (
           <ReaderMenu title={secondTitle} toggled={toggleMenu} />
         )}
@@ -22,10 +23,10 @@ const DashboardLayout = ({ children, secondTitle }) => {
         {user.role === "admin" && (
           <AdminMenu title={secondTitle} toggled={toggleMenu} />
         )}
-        <div className={styles.children_container}>
+        <div className={`container p-x ${styles.children_container}`}>
           <div className={styles.toggler_desktop}>
             {toggleMenu ? (
-              <RiMenuUnfoldFill
+              <CgMenuGridR
                 size={28}
                 color={"var(--colorDarkBlue)"}
                 onClick={() => {
@@ -52,7 +53,7 @@ const DashboardLayout = ({ children, secondTitle }) => {
                 }}
               />
             ) : (
-              <RiMenuUnfoldFill
+              <CgMenuGridR
                 size={27}
                 color={"var(--colorDarkBlue)"}
                 onClick={() => {

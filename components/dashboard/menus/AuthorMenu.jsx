@@ -1,7 +1,12 @@
 import styles from "./Menu.module.css"
 import Link from "next/link"
 import { FaCog, FaRegComments, FaTools } from "react-icons/fa"
-import { RiArticleLine, RiDraftLine, RiUser3Fill } from "react-icons/ri"
+import {
+  RiArticleLine,
+  RiDraftLine,
+  RiHeart3Fill,
+  RiUser3Fill,
+} from "react-icons/ri"
 
 const AuthorMenu = ({ title, toggled }) => {
   return (
@@ -14,6 +19,13 @@ const AuthorMenu = ({ title, toggled }) => {
           <Link href={"/dashboard/my/account"}>
             <a className={title === "Mon Compte" ? styles.active : null}>
               <FaCog /> Paramètres
+            </a>
+          </Link>
+        </li>
+        <li>
+          <Link href={"/dashboard/my/favs"}>
+            <a className={title === "Mes favoris" ? styles.active : null}>
+              <RiHeart3Fill /> Mes Favoris
             </a>
           </Link>
         </li>

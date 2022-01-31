@@ -1,8 +1,7 @@
 .menu {
-  width: 30%;
+  width: fit-content;
   white-space: nowrap;
   padding-right: 3rem;
-  margin-right: 1rem;
   background-color: var(--bgVeryLightGray);
   border-right: 3px solid var(--colorDarkBlue);
   transition: all 200ms ease-in-out;
@@ -16,22 +15,22 @@
   display: flex;
   align-items: center;
   font-size: 1.375rem;
+  margin-top: 0;
+  margin-bottom: 2rem;
   font-weight: 700;
   color: var(--colorDarkBlue);
 }
 
 .menu svg {
-  margin-right: 0.7rem;
+  margin-right: 0.9rem;
 }
 
 .menu ul {
-  padding-left: 0.7rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 3em;
 }
 
 .menu ul li {
-  padding-left: 0.5rem;
-  margin-bottom: 0.9rem;
+  margin-bottom: 1.5rem;
 }
 
 .menu ul li a {
@@ -46,22 +45,14 @@
 
 @media screen and (max-width: 1050px) {
   .menu {
-    position: absolute;
-    top: 2rem;
     display: none;
-    padding: 1rem 0;
-    overflow: hidden;
     border-right: none;
     border-radius: 5px;
-    box-shadow: 1px 2px 3px var(--shadow);
-    z-index: 32;
   }
 
   .menu.closed {
     display: block;
-    padding: 1rem;
-    width: 70vw;
-    border: 1px solid var(--colorDarkBlue);
+    margin-bottom: 3rem;
   }
 }
 
