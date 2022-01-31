@@ -1,12 +1,6 @@
 import styles from "./Menu.module.css"
 import Link from "next/link"
-import {
-  FaCog,
-  FaHouseUser,
-  FaPray,
-  FaRegComments,
-  FaUsers,
-} from "react-icons/fa"
+import { FaCog, FaPray, FaRegComments, FaTools, FaUsers } from "react-icons/fa"
 import { RiArticleLine, RiDraftLine, RiUser3Fill } from "react-icons/ri"
 
 const AdminMenu = ({ title, toggled }) => {
@@ -14,12 +8,12 @@ const AdminMenu = ({ title, toggled }) => {
     <div className={`${toggled && styles.closed} ${styles.menu}`}>
       <ul>
         <p>
-          <FaHouseUser /> Moi
+          <RiUser3Fill /> Mon Compte
         </p>
         <li>
           <Link href={"/dashboard/my/account"}>
             <a className={title === "Mon Compte" ? styles.active : null}>
-              <RiUser3Fill /> Mon Compte
+              <FaCog /> Paramètres
             </a>
           </Link>
         </li>
@@ -47,7 +41,7 @@ const AdminMenu = ({ title, toggled }) => {
       </ul>
       <ul>
         <p>
-          <FaCog /> Gérer
+          <FaTools /> Gestion
         </p>
         <li>
           <Link href={"/dashboard/users"}>

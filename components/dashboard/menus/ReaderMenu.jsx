@@ -1,6 +1,6 @@
 import styles from "./Menu.module.css"
 import Link from "next/link"
-import { FaHouseUser, FaRegComments } from "react-icons/fa"
+import { FaCog, FaRegComments } from "react-icons/fa"
 import { RiUser3Fill } from "react-icons/ri"
 
 const ReaderMenu = ({ title, toggled }) => {
@@ -8,12 +8,12 @@ const ReaderMenu = ({ title, toggled }) => {
     <div className={`${toggled && styles.closed} ${styles.menu}`}>
       <ul>
         <p>
-          <FaHouseUser /> Moi
+          <RiUser3Fill /> Mon Compte
         </p>
         <li>
           <Link href={"/dashboard/my/account"}>
             <a className={title === "Mon Compte" ? styles.active : null}>
-              <RiUser3Fill /> Mon Compte
+              <FaCog /> Paramètres
             </a>
           </Link>
         </li>
