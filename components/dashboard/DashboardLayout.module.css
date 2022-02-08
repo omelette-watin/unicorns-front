@@ -11,35 +11,12 @@
 
 .children_container {
   flex: 1;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
-.closed {}
-
-.toggler_mobile {
-  display: none;
-}
-
-.toggler_desktop {
-  margin-bottom: 2rem;
-}
-
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 750px) {
   .dashboard_container {
-    position: relative;
-    display: block;
     flex-direction: column;
-    z-index: 1;
-  }
-
-  .toggler_mobile {
-    position: absolute;
-    top: 2.5rem;
-    right: 1.5rem;
-    display: block;
-    z-index: 40;
-  }
-
-  .toggler_desktop {
-    display: none;
   }
 }

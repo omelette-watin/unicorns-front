@@ -5,7 +5,7 @@ import Link from "next/link"
 const Post = ({ id, title, content, author, date }) => (
   <div className={styles.post}>
     <div className={styles.title}>
-      <h3>{title} ...</h3>
+      <h3>{title}</h3>
     </div>
     <div className={styles.date}>
       <Date dateString={date} />
