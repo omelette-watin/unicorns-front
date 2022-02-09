@@ -5,8 +5,10 @@ export const getSiteViews = async () => {
   return data.views
 }
 
-export const getViewsByAuthorId = async (id) => {
-  const { data } = await api.get(`/views/${id}`)
+export const getViewsByAuthorId = async (id, month = "", year = "") => {
+  const { data } = await api.get(
+    `/views/${id}${month || year ? `?month=${month}&year=${year}` : ""}`
+  )
   return data.views
 }
 
