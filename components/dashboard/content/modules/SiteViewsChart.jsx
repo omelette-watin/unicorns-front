@@ -1,5 +1,4 @@
 import styles from "./Modules.module.css"
-import { useUser } from "../../../../contexts/user.context"
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -14,7 +13,7 @@ import {
 } from "chart.js"
 import { Bar, Line } from "react-chartjs-2"
 import { useEffect, useState } from "react"
-import { getViewsByAuthorId } from "../../../../services/view.service"
+import { getSiteViews } from "../../../../services/view.service"
 import Loading from "../../../helpers/Loading"
 
 ChartJS.register(
@@ -53,7 +52,7 @@ export const options = {
   },
 }
 
-const getViewsByMonth = async (id, monthsNumber = 4) => {
+const getViewsByMonth = async (monthsNumber = 4) => {
   const currentMonth = new Date().getMonth() + 1
   const currentYear = new Date().getFullYear()
 
@@ -62,25 +61,16 @@ const getViewsByMonth = async (id, monthsNumber = 4) => {
 
   for (let i = monthsNumber; i >= 0; i -= 1) {
     if (i === 0) {
-      const viewsCurrentMonth = await getViewsByAuthorId(
-        id,
-        currentMonth,
-        currentYear
-      )
+      const viewsCurrentMonth = await getSiteViews(currentMonth, currentYear)
       usedMonths.push(months[currentMonth - 1])
       views.push(viewsCurrentMonth)
     } else {
       if (currentMonth - i <= 0) {
-        const viewsCurrentMonth = await getViewsByAuthorId(
-          id,
-          13 - i,
-          currentYear - 1
-        )
+        const viewsCurrentMonth = await getSiteViews(13 - i, currentYear - 1)
         usedMonths.push(months[13 - i])
         views.push(viewsCurrentMonth)
       } else {
-        const viewsCurrentMonth = await getViewsByAuthorId(
-          id,
+        const viewsCurrentMonth = await getSiteViews(
           currentMonth - i,
           currentYear
         )
@@ -96,11 +86,11 @@ const getViewsByMonth = async (id, monthsNumber = 4) => {
       {
         data: views,
         backgroundColor: [
-          "rgba(255, 99, 132, 1)",
           "rgba(54, 162, 235, 1)",
-          "rgba(255, 159, 64, 1)",
-          "rgba(153, 102, 255, 1)",
           "rgba(75, 192, 192, 1)",
+          "rgba(153, 102, 255, 1)",
+          "rgba(255, 159, 64, 1)",
+          "rgba(255, 99, 132, 1)",
         ],
         borderWidth: 0,
       },
@@ -108,23 +98,22 @@ const getViewsByMonth = async (id, monthsNumber = 4) => {
   }
 }
 
-const PostViewsChart = () => {
-  const { user } = useUser()
+const SiteViewsChart = () => {
   const [dataChart, setDataChart] = useState(null)
 
   useEffect(async () => {
-    const data = await getViewsByMonth(user._id, 4)
+    const data = await getViewsByMonth(4)
     setDataChart(data)
   }, [])
 
   return (
     <div className={styles.module}>
       <p className={styles.title}>
-        Nombre de <span>Vues</span> sur vos <span>Articles</span>
+        Nombre total de <span>Vues</span> sur <span>Unicorn's</span>
       </p>
       {dataChart ? <Bar data={dataChart} options={options} /> : <Loading />}
     </div>
   )
 }
 
-export default PostViewsChart
+export default SiteViewsChart

@@ -1,0 +1,33 @@
+.dashboard_index_wrapper {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+  grid-gap: 2rem;
+}
+
+.path {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: var(--font-sm);
+  margin: 1rem 0.4rem 2rem;
+}
+
+.path a {
+  display: inline-block;
+  font-weight: 600;
+  color: var(--colorDarkBlue);
+  text-decoration: underline;
+}
+
+.path a:hover {
+  text-decoration: none;
+}
+@media screen and (max-width: 950px) {
+  .dashboard_index_wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .path {
+    margin-top: 0;
+  }
+}

@@ -19,4 +19,8 @@
   .dashboard_container {
     flex-direction: column;
   }
+
+  .children_container {
+    padding-top: 0.5rem;
+  }
 }
