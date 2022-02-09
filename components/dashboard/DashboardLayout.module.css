@@ -15,7 +15,7 @@
   padding-bottom: 2rem;
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 950px) {
   .dashboard_container {
     flex-direction: column;
   }

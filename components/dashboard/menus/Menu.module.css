@@ -112,7 +112,7 @@
   color: var(--colorDarkBlue);
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 950px) {
   .menu_wrapper {
     flex-direction: row;
     justify-content: space-between;

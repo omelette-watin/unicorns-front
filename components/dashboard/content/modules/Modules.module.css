@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 2rem;
   background-color: var(--bgWhite);
   border-radius: 10px;
   box-shadow: 1px 2px 3px var(--shadow);
@@ -24,4 +24,10 @@
 
 .title span:nth-child(2) {
   color: var(--colorLimeGreen);
+}
+
+@media screen and (max-width: 950px) {
+  .module {
+    padding: 1rem;
+  }
 }
