@@ -1,7 +1,9 @@
 import api from "./api.service"
 
-export const getSiteViews = async () => {
-  const { data } = await api.get("/views")
+export const getSiteViews = async (month = "", year = "") => {
+  const { data } = await api.get(
+    `/views${month || year ? `?month=${month}&year=${year}` : ""}`
+  )
   return data.views
 }
 
