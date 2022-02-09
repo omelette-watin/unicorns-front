@@ -286,8 +286,17 @@ const PostLayout = ({ post, comment }) => {
                       &laquo; {comment.content} &raquo;
                     </p>
                     <p className={styles.comment_infos}>
-                      Posté le <Date dateString={comment.createdAt} /> à{" "}
-                      <Heure dateString={comment.createdAt} /> par{" "}
+                      {comment.modifiedAt ? (
+                        <span>
+                          Modifié le <Date dateString={comment.modifiedAt} /> à{" "}
+                          <Heure dateString={comment.modifiedAt} /> par{" "}
+                        </span>
+                      ) : (
+                        <span>
+                          Modifié le <Date dateString={comment.createdAt} /> à{" "}
+                          <Heure dateString={comment.createdAt} /> par{" "}
+                        </span>
+                      )}
                       <Link href={`/users/${post.authorId}`}>
                         <a className={styles.author}>@{comment.authorName}</a>
                       </Link>
