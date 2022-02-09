@@ -96,7 +96,7 @@ const Menu = ({ title }) => {
               </a>
             </Link>
           </li>
-          <div className={styles.separator} />
+          {(isAdmin || isAuthor) && <div className={styles.separator} />}
           {isAdmin && (
             <>
               <li>
