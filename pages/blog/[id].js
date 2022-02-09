@@ -1,6 +1,6 @@
 import { getPublishedPostById } from "../../services/post.service"
 import PostLayout from "../../components/blog/PostLayout"
-import { addViewToPost } from "../../services/view.controller"
+import { addViewToPost } from "../../services/view.service"
 
 const Post = ({ post, currentComment }) => {
   return <PostLayout post={post} comment={currentComment} />
