@@ -4,6 +4,7 @@ import Router from "next/router"
 import { getAllPublishedPosts } from "../../services/post.service"
 import ReactPaginate from "react-paginate"
 import PostCard from "../../components/cards/PostCard"
+import Loading from "../../components/helpers/Loading"
 
 const AllPosts = (props) => {
   const [isLoading, setLoading] = useState(false)
@@ -49,17 +50,7 @@ const AllPosts = (props) => {
   }
 
   let content
-  if (isLoading)
-    content = (
-      <div className={"loading_wrapper"}>
-        <div className="lds-ellipsis">
-          <div />
-          <div />
-          <div />
-          <div />
-        </div>
-      </div>
-    )
+  if (isLoading) content = <Loading />
   else {
     content = (
       <ul>
