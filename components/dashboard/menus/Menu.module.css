@@ -7,6 +7,9 @@
 
 .menu {
   width: fit-content;
+  padding: 1rem 2rem 1rem 0;
+  margin-top: 1rem;
+  border-right: 2px solid var(--colorDarkBlue);
   white-space: nowrap;
   transition: all 200ms ease-in-out;
 }
@@ -35,6 +38,10 @@
 
 .menu ul li {
   margin-bottom: 0.6rem;
+}
+
+.menu ul li:last-child {
+  margin-bottom: 0;
 }
 
 .menu ul li p {
@@ -84,7 +91,6 @@
 
 .toggler {
   margin-left: 0.5rem;
-  margin-bottom: 2rem;
   font-size: var(--font-medl);
   cursor: pointer;
 }
@@ -122,6 +128,9 @@
 
   .menu {
     text-align: center;
+    padding: 0;
+    margin: 0;
+    border: none;
   }
 
   .menu.closed {

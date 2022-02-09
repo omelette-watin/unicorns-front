@@ -19,7 +19,6 @@ const DashbordIndex = () => {
       <div className={styles.dashboard_index_wrapper}>
         {isAdmin && <SiteViewsChart />}
         {(isAdmin || isAuthor) && <PostViewsChart />}
-        <div>connard</div>
       </div>
     </>
   )
