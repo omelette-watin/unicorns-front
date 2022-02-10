@@ -1,7 +1,7 @@
 import api from "./api.service"
 
-export const countAllUser = async () => {
-  const { data } = await api.get("/users/count")
+export const countAllUser = async (month = "", year = "") => {
+  const { data } = await api.get(`/users/count${(month && year) ? `?month=${month}&year=${year}` : ""}`)
   return data.count
 }
 
