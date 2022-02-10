@@ -17,7 +17,7 @@ import { CgMenuGridR } from "react-icons/cg"
 
 const Menu = ({ title }) => {
   const { user } = useUser()
-  const [toggle, setToggle] = useState(false)
+  const [toggle, setToggle] = useState(true)
   const isAdmin = user.role === "admin"
   const isAuthor = user.role === "author"
 
