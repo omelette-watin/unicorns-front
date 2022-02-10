@@ -3,6 +3,7 @@ import styles from "./DashboardIndex.module.css"
 import { useUser } from "../../../contexts/user.context"
 import Link from "next/link"
 import SiteViewsChart from "./modules/SiteViewsChart"
+import UsersRegistrationChart from "./modules/UsersRegistrationChart"
 
 const DashbordIndex = () => {
   const { user } = useUser()
