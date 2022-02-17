@@ -109,8 +109,8 @@ export async function getServerSideProps({ query }) {
   const page = parseInt(query.page) || 1
   const posts = await getAllPublishedPosts(
     page,
-    search,
-    category,
+    search.replace(" ", "%"),
+    category.replace(" ", "%"),
     order,
     views,
     comments,
