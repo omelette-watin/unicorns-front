@@ -293,7 +293,7 @@ const PostLayout = ({ post, comment }) => {
                         </span>
                       ) : (
                         <span>
-                          Modifié le <Date dateString={comment.createdAt} /> à{" "}
+                          Posté le <Date dateString={comment.createdAt} /> à{" "}
                           <Heure dateString={comment.createdAt} /> par{" "}
                         </span>
                       )}
