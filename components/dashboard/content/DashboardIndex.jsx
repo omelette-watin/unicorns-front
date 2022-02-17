@@ -24,7 +24,6 @@ const DashboardIndex = () => {
         {(isAdmin || isAuthor) && <PostViewsChart />}
         <MyLastComments />
       </div>
-
     </>
   )
 }
