@@ -4,8 +4,9 @@ import { useUser } from "../../../contexts/user.context"
 import Link from "next/link"
 import SiteViewsChart from "./modules/SiteViewsChart"
 import UsersRegistrationChart from "./modules/UsersRegistrationChart"
+import MyLastComments from "./modules/MyLastComments"
 
-const DashbordIndex = () => {
+const DashboardIndex = () => {
   const { user } = useUser()
   const isAdmin = user.role === "admin"
   const isAuthor = user.role === "author"
@@ -21,9 +22,11 @@ const DashbordIndex = () => {
         {isAdmin && <SiteViewsChart />}
         {isAdmin && <UsersRegistrationChart />}
         {(isAdmin || isAuthor) && <PostViewsChart />}
+        <MyLastComments />
       </div>
+
     </>
   )
 }
 
-export default DashbordIndex
+export default DashboardIndex
