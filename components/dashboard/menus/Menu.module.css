@@ -95,6 +95,17 @@
   cursor: pointer;
 }
 
+
+.toggler svg,
+.toggler_mobile svg {
+  transition: color 200ms ease-in-out;
+}
+
+.toggler svg:hover,
+.toggler_mobile svg:hover{
+  color: var(--colorDarkBlue);
+}
+
 .toggler_mobile {
   display: none;
   margin-left: auto;
