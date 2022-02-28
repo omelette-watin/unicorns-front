@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   padding: 2rem;
   background-color: var(--bgWhite);
   border-radius: 10px;
@@ -12,6 +11,7 @@
 .title {
   color: var(--colorDarkBlue);
   font-weight: 600;
+  margin-bottom: 2rem;
 }
 
 .title span {
@@ -25,6 +25,64 @@
 .title span:nth-child(2) {
   color: var(--colorLimeGreen);
 }
+
+.title span a {
+  text-decoration: none;
+}
+
+.title span a:hover {
+  text-decoration: underline;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.comments li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  padding: 1rem 2rem;
+  background-color: var(--bgVeryLightGray);
+  border-radius: 5px;
+}
+
+.comments a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.comments a:hover {
+  border: 2px solid var(--lightBlue);
+  border-radius: 5px ;
+}
+
+[data-theme='light'] .comments li {
+  background-color: var(--lightGrayishBlue);
+}
+
+.comments div {
+  display: inline;
+}
+
+.comments .content {
+  color: var(--colorDarkBlue);
+  margin-right: 2rem;
+  margin-bottom: 1rem;
+}
+
+.comments .date {
+  align-self: flex-end;
+  font-size: var(--font-sm);
+}
+
 
 @media screen and (max-width: 950px) {
   .module {
