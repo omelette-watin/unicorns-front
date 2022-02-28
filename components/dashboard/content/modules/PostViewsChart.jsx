@@ -1,5 +1,6 @@
 import styles from "./Modules.module.css"
 import { useUser } from "../../../../contexts/user.context"
+import Link from "next/link"
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -120,7 +121,12 @@ const PostViewsChart = () => {
   return (
     <div className={styles.module}>
       <p className={styles.title}>
-        Nombre de <span>Vues</span> sur vos <span>Articles</span>
+        Nombre de <span>Vues</span> sur vos{" "}
+        <span>
+          <Link href={"/my/posts"}>
+            <a>Articles</a>
+          </Link>
+        </span>
       </p>
       {dataChart ? <Bar data={dataChart} options={options} /> : <Loading />}
     </div>
