@@ -35,6 +35,18 @@
   color: var(--colorGrayishBlue);
 }
 
+.blog_container button:focus {
+  border: 2px solid var(--black);
+}
+
+[data-theme='dark'] .blog_container button:focus {
+  border: 2px solid var(--white);
+}
+
+.blog_container button.cancel:focus {
+  border: 2px solid var(--black);
+}
+
 .author,
 .author:visited {
   color: var(--lightBlue);
