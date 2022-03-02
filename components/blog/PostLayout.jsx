@@ -297,7 +297,7 @@ const PostLayout = ({ post, comment }) => {
                           <Heure dateString={comment.createdAt} /> par{" "}
                         </span>
                       )}
-                      <Link href={`/users/${post.authorId}`}>
+                      <Link href={`/users/${comment.authorId}`}>
                         <a className={styles.author}>@{comment.authorName}</a>
                       </Link>
                     </p>

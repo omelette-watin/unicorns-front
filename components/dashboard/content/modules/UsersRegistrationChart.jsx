@@ -14,7 +14,7 @@ import {
 import { Bar, Line } from "react-chartjs-2"
 import { useEffect, useState } from "react"
 import Loading from "../../../helpers/Loading"
-import {countAllUser} from "../../../../services/user.service";
+import { countAllUser } from "../../../../services/user.service"
 
 ChartJS.register(
   CategoryScale,
@@ -86,11 +86,11 @@ const getUsersRegistrationByMonth = async (monthsNumber = 4) => {
       {
         data: newUsers,
         backgroundColor: [
-          "rgba(54, 162, 235, 1)",
+          "rgba(255, 159, 64, 1)",
           "rgba(75, 192, 192, 1)",
           "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
           "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)",
         ],
         borderWidth: 0,
       },
@@ -112,7 +112,7 @@ const UsersRegistrationChart = () => {
       </p>
       {dataChart ? <Bar data={dataChart} options={options} /> : <Loading />}
     </div>
-  );
-};
+  )
+}
 
-export default UsersRegistrationChart;
+export default UsersRegistrationChart
