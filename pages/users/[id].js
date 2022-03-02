@@ -8,7 +8,7 @@ const User = ({ user }) => {
       <p>
         {user.role === "admin" ? "Administrateur" : null}
         {user.role === "author" ? "Auteur" : null}
-        {user.role === "reader" ? "Utilisateur" : null} depuis le{" "}
+        {user.role === "reader" ? "Utilisateur" : null} inscrit depuis le{" "}
         <Date dateString={user.createdAt} />
       </p>
     </div>
